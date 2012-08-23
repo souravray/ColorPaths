@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>COLOR PATHS</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=IE9" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+
+    <meta name="viewport"/>
+
+    <script type="text/javascript" src="lib/viewporter.js"></script>
+    <script type="text/javascript" src="lib/caat-min.js"></script>
+    <script type="text/javascript" src="lib/sylvester.js"></script>
+    <script type="text/javascript" src="lib/PxLoader.js"></script>
+    <script type="text/javascript" src="lib/PxLoaderImage.js"></script>
+    <script type="text/javascript" src="lib/tge-min.js"></script>
+
+    <script type="text/javascript" src="MyGame.js"></script>
+
+    <!-- TreSensa Game Engine -->
+    <script type="text/javascript">
+
+        function initializeTGE() {
+            var _myGame = new MyGame();
+            if(_myGame.IsPlatformAcceptable()) {
+                _myGame.Launch("game_canvas");
+            }
+        }
+        window.addEventListener ? window.addEventListener("load",initializeTGE,false) : window.attachEvent && window.attachEvent("onload",initializeTGE);
+
+    </script>
+
+</head>
+
+
+<body>
+
+    <div id="viewporter" align="center" width="100%">
+        <div id="game_canvas" style="position:relative; width:320px; height:416px; top:0px; text-align: center; vertical-align: middle;">
+        </div>
+    </div>
+
+</body>
+
+</html>
