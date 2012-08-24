@@ -9,24 +9,24 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen">
 
     <meta name="viewport"/>
 
-    <script type="text/javascript" src="lib/viewporter.js"></script>
-    <script type="text/javascript" src="lib/caat-min.js"></script>
-    <script type="text/javascript" src="lib/sylvester.js"></script>
-    <script type="text/javascript" src="lib/PxLoader.js"></script>
-    <script type="text/javascript" src="lib/PxLoaderImage.js"></script>
-    <script type="text/javascript" src="lib/tge-min.js"></script>
+    <script type="text/javascript" src="js/libs/viewporter.js"></script>
+    <script type="text/javascript" src="js/libs/caat-min.js"></script>
+    <script type="text/javascript" src="js/libs/sylvester.js"></script>
+    <script type="text/javascript" src="js/libs/PxLoader.js"></script>
+    <script type="text/javascript" src="js/libs/PxLoaderImage.js"></script>
+    <script type="text/javascript" src="js/libs/tge-min.js"></script>
 
-    <script type="text/javascript" src="MyGame.js"></script>
+    <script type="text/javascript" src="js/scripts/MyGame.js"></script>
 
     <!-- TreSensa Game Engine -->
     <script type="text/javascript">
-
+        var _myGame;
         function initializeTGE() {
-            var _myGame = new MyGame();
+             _myGame = new MyGame();
             if(_myGame.IsPlatformAcceptable()) {
                 _myGame.Launch("game_canvas");
             }
