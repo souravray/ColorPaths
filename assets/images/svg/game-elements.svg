@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="439.01345"
-     inkscape:cy="495.65272"
+     inkscape:zoom="2"
+     inkscape:cx="252.59577"
+     inkscape:cy="401.35771"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -497,14 +497,14 @@
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
-       style="fill:#339900;fill-opacity:0.98636367000000003;stroke:#339900;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#339900;fill-opacity:0.98636367;stroke:#339900;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="path3165-3-1"
        sodipodi:cx="157.68481"
        sodipodi:cy="258.36966"
        sodipodi:rx="7.9549513"
        sodipodi:ry="6.0987959"
        d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
-       transform="matrix(1.3191116,0,0,1.7205804,114.68461,-19.42819)"
+       transform="matrix(1.3191116,0,0,1.7205804,114.68461,-19.428188)"
        inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-green-source-path-up.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -549,7 +549,7 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:#339900;fill-opacity:0.98636367;stroke:#339900;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
-       d="m 311.6025,405.06693 10.37888,0 10.37888,0 0,20.75775 -20.75776,0 z"
+       d="m 312.3096,404.35983 10.37888,0 10.37888,0 0,20.75775 -20.75776,0 z"
        id="rect2985-8-4-3-8-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc"
@@ -1225,8 +1225,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:#0197fd;fill-opacity:0.98636367000000003;stroke:#0197fd;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
-       d="m 270.0711,587.82875 -20.75774,0 0,-10.37887 0,-10.37888 20.75774,0 z"
+       style="fill:#0197fd;fill-opacity:0.98636367;stroke:#0197fd;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 270.0711,587.82876 -20.75774,0 0,-10.37887 0,-10.37888 20.75774,0 z"
        id="rect2985-5-7-4-1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc"
@@ -1279,14 +1279,14 @@
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
-       style="fill:#0197fd;fill-opacity:0.98636367000000003;stroke:#0197fd;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#0197fd;fill-opacity:0.98636367;stroke:#0197fd;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="path3165-3-7-81-4"
        sodipodi:cx="157.68481"
        sodipodi:cy="258.36966"
        sodipodi:rx="7.9549513"
        sodipodi:ry="6.0987959"
        d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
-       transform="matrix(1.3191116,0,0,1.7205804,62.067239,132.90412)"
+       transform="matrix(1.3191116,0,0,1.7205804,62.067242,132.90411)"
        inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-blue-source-path-left.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />

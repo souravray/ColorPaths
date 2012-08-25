@@ -213,7 +213,8 @@ Drawtool.prototype =
     }
 }
 
-var Pen =  function(board, origin){
+var Pen =  function(master,board, origin){
+    this.master=master;
     this.origin =  origin;
     this.drawhistory = new Array(origin);
     this.board = board;
