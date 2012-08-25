@@ -15,7 +15,10 @@ MyGame = function()
         {id:'color-up', url:'assets/images/tile-light-source-path-up.png'},
         {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
         {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
-        {id:'color-left', url:'assets/images/tile-light-source-path-left.png'}
+        {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
+        {id:'pause-button',url:'assets/images/pause-button.png'},
+        {id:'resume-button',url:'assets/images/resume-button.png'},
+        {id:'gameover-button', url:'assets/images/tryagain-button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -38,9 +41,11 @@ MyGame.prototype =
         this.ClearScene();
         this.rowsAndColumns =13;
         this.tilesWidthHeight = 42;
+        this.buttonsWidthHeight = 20;
+        this.xPadding = 50;
+        this.yPadding = 50;
         // Fill the background in with white
-        this.SetBackgroundColor("#ccc");
-        
+        this.SetBackgroundColor("#ccc"); 
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
