@@ -1,6 +1,7 @@
 // Inherit from Screen
 MainMenu.prototype = new TGE.Screen();
 MainMenu.prototype.constructor = MainMenu;
+
 function MainMenu(screenManager)
 {
     TGE.Screen.call(this,screenManager);
@@ -16,6 +17,7 @@ MainMenu.prototype.Setup = function()
 
 MainMenu.prototype.playGame = function()
 {
-    this.Close();
     this.Game().PlayGame();
+    GameTimer.startTimer();
+    this.Close();
 }

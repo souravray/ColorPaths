@@ -11,6 +11,8 @@ function GameOver(screenManager)
 
 GameOver.prototype.Setup = function()
 {
+    GameTimer.stopTimer();
+    GameTimer.resetTimer();
     // Background
     this.FillBackground("#ccc");
 
@@ -26,6 +28,7 @@ GameOver.prototype.Setup = function()
 
 GameOver.prototype.playAgain = function()
 {
+    GameTimer.resetTimer();
     this.Game().Replay();
     this.Close();
 }
