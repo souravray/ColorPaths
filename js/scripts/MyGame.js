@@ -86,7 +86,7 @@ MyGame.prototype =
     },
     subclassMouseUp: function()
     {  
-        //this.mDrawtoolObj.deselectTool();
+        this.mDrawtoolObj.deselectTool();
     },
     subclassUpdateGame: function(elapsedTime)
     {  
