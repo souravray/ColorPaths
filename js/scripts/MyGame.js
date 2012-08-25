@@ -79,6 +79,11 @@ MyGame.prototype =
             this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
         };
     },
+    subclassMouseUp: function()
+    { 
+        
+        this.mDrawtoolObj.deselectTool(selectedElementIndex.x, selectedElementIndex.y);
+    },
     subclassUpdateGame: function(elapsedTime)
     {  
         this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
@@ -182,13 +187,14 @@ Pen.prototype = {
             if(lastE != null){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
                     if((lastpoint.x - point.x)<0){
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-right")
                         } else {
                             
                         }
                     } else {
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-left")
                         } else {
                             
@@ -196,13 +202,13 @@ Pen.prototype = {
                     }
                 }else{
                     if((lastpoint.y - point.y)<0){
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-down")
                         } else {
                             
                         }
                     } else {
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-up")
                         } else {
                             
