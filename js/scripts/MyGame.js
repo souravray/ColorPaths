@@ -35,7 +35,8 @@ MyGame = function()
         {id:'blue-up', url:'assets/images/tile-blue-source-path-up.png'},
         {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
-        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'}
+        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -68,6 +69,7 @@ MyGame.prototype =
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new boardClass(this, gameMatrix);
         }
+    this.EndGame();
     }    
 }
 extend(MyGame, TGE.Game, null);
@@ -99,7 +101,10 @@ boardClass.prototype = {
                 this.currentBoard[rowCounter][columnCounter].state =  this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1);
             };
         };
+        
     }
+    
+    
 }
 
 
