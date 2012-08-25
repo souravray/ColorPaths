@@ -199,6 +199,7 @@ Drawtool.prototype =
              }
         }
     },
+    
     deselectTool: function(){
         if(this.state==1){
             this.tool=null;
