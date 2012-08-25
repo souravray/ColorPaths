@@ -12,7 +12,7 @@ function GameOver(screenManager)
 GameOver.prototype.Setup = function()
 {
     // Background
-    this.FillBackground("#FFF");
+    this.FillBackground("#ccc");
 
     // Score
     this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),

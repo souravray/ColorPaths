@@ -11,6 +11,14 @@ MyGame = function()
     // Game Images that are required to start the game
     var gameImages = [ 
     	{id:'blank', url:'assets/images/tile.png'},
+        {id:'color', url:'assets/images/tile-light-source.png'},
+        {id:'color-up', url:'assets/images/tile-light-source-path-up.png'},
+        {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
+        {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
+        {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
+        {id:'pause_button',url:'assets/images/pause-button.png'},
+        {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain-button.png'},
         {id:'pink', url:'assets/images/tile-pink-source.png'},
         {id:'pink-up', url:'assets/images/tile-pink-source-path-up.png'},
         {id:'pink-down', url:'assets/images/tile-pink-source-path-down.png'},
@@ -35,7 +43,9 @@ MyGame = function()
         {id:'blue-up', url:'assets/images/tile-blue-source-path-up.png'},
         {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
-        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'}
+        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
+        {id:'pause-screen-info', url:'assets/images/pause-screen-info.png'},
+        {id:'restart-level', url:'assets/images/restartLevel.png'}        
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -61,6 +71,8 @@ MyGame.prototype =
         this.buttonsWidthHeight = 20;
         this.xPadding = 50;
         this.yPadding = 50;
+        this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.91), this.mScreenManager.YFromPercentage(0.07),
+        "restart-level", PauseScreen.prototype.restart.bind(this), 1);
         // Fill the background in with white
         this.SetBackgroundColor("#ccc"); 
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
