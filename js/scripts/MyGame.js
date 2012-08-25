@@ -76,8 +76,12 @@ MyGame.prototype =
     { 
         if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
             var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
-             this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y)
+            this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
         };
+    },
+    subclassUpdateGame: function(elapsedTime)
+    {  
+        this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
     }
 }
 extend(MyGame, TGE.Game, null);
@@ -120,7 +124,9 @@ Board.prototype = {
     }
 }
 
+
 //drawtools 
+
 var Drawtool = function(board){
     this.state = 0; //state 0 not drawing, 1 drawing, 2 erasing
     this.board=null;
@@ -140,6 +146,7 @@ Drawtool.prototype =
                 if(e.state.match(/path/g)){
                     console.log("gggg");
                 }else{
+                    this.state = 1;
                     this.tool = new Pen(this.board,{x:boardx, y:boardy});
                 }
 
@@ -147,24 +154,62 @@ Drawtool.prototype =
         }
     },
     deselectTool: function(){
-        this.tool=null;
+        if(this.state==1){
+            this.tool=null;
+            this.state=0;
+        } 
+    },
+    draw: function(point){
+        if(this.tool!=null){
+         this.tool.draw(point);
+        }
     }
 }
 
 var Pen =  function(board, origin){
     this.origin =  origin;
     this.drawhistory = new Array(origin);
-    this.board = null;
+    this.board = board;
 }
 
 Pen.prototype = {
     draw: function(point){
-        this.drawhistory.push(point);
-        this.board[x][y];
-        if( Math.abs(this.lastCoordinate.x - x) > Math.abs(this.lastCoordinate.y - y) ){
-
-        }else{
-
+        var lastpoint = this.drawhistory[this.drawhistory.length-1];
+        if(lastpoint.x!=point.x || lastpoint.y!=point.y){
+            this.drawhistory.push(point);
+            
+            var lastE = this.board[lastpoint.x][lastpoint.y];
+            if(lastE != null){
+                if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
+                    if((lastpoint.x - point.x)<0){
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-right")
+                        } else {
+                            
+                        }
+                    } else {
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-left")
+                        } else {
+                            
+                        }
+                    }
+                }else{
+                    if((lastpoint.y - point.y)<0){
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-down")
+                        } else {
+                            
+                        }
+                    } else {
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-up")
+                        } else {
+                            
+                        }
+                    }
+                }
+            }
         }
     }
 }
