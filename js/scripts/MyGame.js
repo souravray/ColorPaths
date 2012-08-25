@@ -190,17 +190,19 @@ Pen.prototype = {
             this.drawhistory.push(point);
             
             var lastE = this.board[lastpoint.x][lastpoint.y];
-            if(lastE != null &&  (Math.abs(lastpoint.x - point.x)/Math.abs(lastpoint.y - point.y) > 0.5){
+            if(lastE != null){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
                     if((lastpoint.x - point.x)<0){
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-right")
+                            lastE.state = lastE.state+"-right";
                         } else {
                             
                         }
                     } else {
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-left")
+                            lastE.state = lastE.state+"-left";
                         } else {
                             
                         }
@@ -209,12 +211,14 @@ Pen.prototype = {
                     if((lastpoint.y - point.y)<0){
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-down")
+                            lastE.state = lastE.state+"-down";
                         } else {
                             
                         }
                     } else {
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-up")
+                            lastE.state = lastE.state+"-up";
                         } else {
                             
                         }
