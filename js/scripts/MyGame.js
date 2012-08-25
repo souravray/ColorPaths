@@ -56,8 +56,7 @@ MyGame = function()
         {id:'aqua-down', url:'assets/images/tile-aqua-source-path-down.png'},
         {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
-        {id:'screen_fade',url:'ui/images/fade.png'},
-        {id:'mainmenu_play_button', url:'ui/images/mainmenu/play_button.png'}
+        {id:'mainmenu_play_button', url:'assets/images/play_button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -109,14 +108,16 @@ MyGame.prototype =
 
     subclassMouseDown: function()
     { 
-        console.log(this.mBoardObj);
-        if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
-            var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
-            this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
-            if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
-                this.EndGame();
+        if(typeof this.mBoardObj != "undefined" || this.mBoardObj != null)
+        {
+            if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
+                var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
+                this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
+                if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
+                    this.EndGame();
+                }
             }
-        };
+        }
     },
     subclassMouseUp: function()
     {  
