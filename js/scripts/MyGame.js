@@ -71,24 +71,24 @@ MyGame.prototype =
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             console.log(this.mDrawtoolObj);
-        }
-<<<<<<< HEAD
-    this.EndGame();
-    }    
-=======
+        }    
+
     },
     subclassMouseDown: function()
     { 
         if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
             var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
             this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
+            if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
+                this.EndGame();
+            }
         };
     },
     subclassUpdateGame: function(elapsedTime)
     {  
         this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
     }
->>>>>>> upstream/master
+
 }
 extend(MyGame, TGE.Game, null);
 
@@ -120,13 +120,7 @@ Board.prototype = {
                 this.currentBoard[rowCounter][columnCounter].SetScale(scale);
                 this.currentBoard[rowCounter][columnCounter].state =  this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1);
             };
-<<<<<<< HEAD
-        };
-        
-    }
-    
-    
-=======
+
         };
     },
     getBoardElement: function( x, y){
@@ -177,7 +171,6 @@ Drawtool.prototype =
          this.tool.draw(point);
         }
     }
->>>>>>> upstream/master
 }
 
 var Pen =  function(board, origin){
