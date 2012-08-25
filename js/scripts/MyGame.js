@@ -12,14 +12,12 @@ MyGame = function()
     // Game Images that are required to start the game
     var gameImages = [ 
     	{id:'blank', url:'assets/images/tile.png'},
-        {id:'color', url:'assets/images/tile-light-source.png'},
         {id:'color-up', url:'assets/images/tile-light-source-path-up.png'},
         {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
         {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
         {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
         {id:'pause_button',url:'assets/images/pause-button.png'},
         {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
-        {id:'gameover_tryagain_button', url:'assets/images/tryagain-button.png'},
         {id:'pink', url:'assets/images/tile-pink-source.png'},
         {id:'pink-up', url:'assets/images/tile-pink-source-path-up.png'},
         {id:'pink-down', url:'assets/images/tile-pink-source-path-down.png'},
@@ -46,8 +44,20 @@ MyGame = function()
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
         {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
         {id:'pause-screen-info', url:'assets/images/pause-screen-info.png'},
-        {id:'restart-level', url:'assets/images/restartLevel.png'}        
-        {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'}
+        {id:'restart-level', url:'assets/images/restartLevel.png'},        
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'},
+        {id:'orange', url:'assets/images/tile-orange-source.png'},
+        {id:'orange-up', url:'assets/images/tile-orange-source-path-up.png'},
+        {id:'orange-down', url:'assets/images/tile-orange-source-path-down.png'},
+        {id:'orange-right', url:'assets/images/tile-orange-source-path-right.png'},
+        {id:'orange-left', url:'assets/images/tile-orange-source-path-left.png'},
+        {id:'aqua', url:'assets/images/tile-aqua-source.png'},
+        {id:'aqua-up', url:'assets/images/tile-aqua-source-path-up.png'},
+        {id:'aqua-down', url:'assets/images/tile-aqua-source-path-down.png'},
+        {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
+        {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
+        {id:'screen_fade',url:'ui/images/fade.png'},
+        {id:'mainmenu_play_button', url:'ui/images/mainmenu/play_button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -67,27 +77,39 @@ MyGame.prototype =
     subclassStartPlaying: function()
     {
     	// Clear everything in the scene
-        this.ClearScene();
         this.rowsAndColumns =13;
         this.tilesWidthHeight = 42;
         this.buttonsWidthHeight = 20;
         this.xPadding = 50;
-        this.yPadding = 50;
-        this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.91), this.mScreenManager.YFromPercentage(0.07),
-        "restart-level", PauseScreen.prototype.restart.bind(this), 1);
+        this.yPadding = 50; 
+        this.loadGame();
+    },
+
+    loadGame: function()
+    {
+        this.ClearScene();
+        this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.1), this.mScreenManager.YFromPercentage(0.07),
+        "restart-level", this.restart.bind(this), 1);
         // Fill the background in with white
-        this.SetBackgroundColor("#ccc"); 
+        this.SetBackgroundColor("#ccc");
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
+            console.log("ok");
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             console.log(this.mDrawtoolObj);
-        }    
-
+        }
     },
+
+    restart: function()
+    {
+        this.loadGame()
+    },
+
     subclassMouseDown: function()
     { 
+        console.log(this.mBoardObj);
         if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
             var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
             this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
@@ -236,24 +258,84 @@ Pen.prototype = {
 // game levels
 
 var gameLevels = new Array(
+
+    //7*7 level 26
     $M([
-      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
-      ["blank","blank","blue","blank","blank","blank", "blank",  "blank",  "blank"],
-      ["blank","blank","blank","red","blank","blank", "blank",  "blank",  "blank"],
-      ["blank","blank","red","blank","blank","blank", "blank",  "blank",  "blank"],
-      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
-      ["blank","blue","blank","blank","blank","green", "blank",  "blank",  "blank"],
-      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
-      ["blank","blue","blank","blank","blank","green", "blank",  "blank",  "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"]
+      ["blank","blank","blank","blank","blank","yellow", "blue"],
+      ["green","blank","blank","blank","green","blank", "blank"],
+      ["blue","blank","red","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","red", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","orange","blank","blank","orange","yellow", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"]
     ]),
+
+    //7*7 level 1
     $M([
       ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","pink","blank","blank","blank", "blank"],
+      ["blank","blank","orange","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","green","blank", "blank"],
       ["blank","blank","blank","green","blank","blank", "blank"],
-      ["blank","blank","green","blank","blank","blank", "blank"],
-      ["pink","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blue","blank","blank","blank","blue", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"]
+      ["blank","blank","blank","aqua","yellow","red", "blank"],
+      ["blank","orange","blank","blank","blank","yellow", "blue"],
+      ["blue","red","blank","blank","blank","blank", "aqua"]
+    ]),
+      
+    $M([
+      ["aqua","blank","blank","blank","blank","blank", "blank"],
+      ["blue","blank","red","orange","blank","blank", "aqua"],
+      ["yellow","blank","blank","blank","red","blank", "blank"],
+      ["blank","blank","yellow","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blue","green","blank", "blank"],
+      ["blank","green","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "orange"]
+    ]),
+
+    //9*9 level 15
+    $M([
+      ["aqua","orange","yellow","blank","yellow","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "blank", "blank"],
+      ["blank","blank","blank","red","blue","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","aqua","green", "blank", "blank", "blank"],
+      ["blank","blank","blank","red","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","pink","blank", "pink", "blank", "blank"],
+      ["blank","orange","blue","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"]
+    ]),
+    //9*9 level 10
+   $M([
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","aqua", "green", "yellow", "blank"],
+      ["blank","blank","red","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","yellow","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "orange", "aqua"],
+      ["blank","blank","pink","blank","blank","pink", "red", "blue", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "orange", "blue"]
     ])
+
+    /*$M([
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"]
+    ]),
+
+    $M([
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank"]
+    ])*/
+
 );
