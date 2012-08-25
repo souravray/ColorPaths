@@ -9,6 +9,7 @@ function PauseScreen(screenManager)
 
 PauseScreen.prototype.Setup = function()
 {
+	this.FillBackground("#CCC");
 	 this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.6),
         "pause-screen-info");
 
