@@ -324,27 +324,4 @@ var gameLevels = new Array(
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "green", "orange", "blue"]
     ])
-
-    /*$M([
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"]
-    ]),
-
-    $M([
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"]
-    ])*/
-
 );
