@@ -59,9 +59,11 @@ MyGame.prototype =
         this.ClearScene();
         this.rowsAndColumns =13;
         this.tilesWidthHeight = 42;
+        this.buttonsWidthHeight = 20;
+        this.xPadding = 50;
+        this.yPadding = 50;
         // Fill the background in with white
-        this.SetBackgroundColor("#ccc");
-        
+        this.SetBackgroundColor("#ccc"); 
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
