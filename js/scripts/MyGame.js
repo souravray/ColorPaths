@@ -85,9 +85,8 @@ MyGame.prototype =
         };
     },
     subclassMouseUp: function()
-    { 
-        
-        this.mDrawtoolObj.deselectTool(selectedElementIndex.x, selectedElementIndex.y);
+    {  
+        //this.mDrawtoolObj.deselectTool();
     },
     subclassUpdateGame: function(elapsedTime)
     {  
@@ -191,10 +190,9 @@ Pen.prototype = {
             this.drawhistory.push(point);
             
             var lastE = this.board[lastpoint.x][lastpoint.y];
-            if(lastE != null){
+            if(lastE != null &&  (Math.abs(lastpoint.x - point.x)/Math.abs(lastpoint.y - point.y) > 0.5){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
                     if((lastpoint.x - point.x)<0){
-
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-right")
                         } else {
