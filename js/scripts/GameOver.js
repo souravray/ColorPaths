@@ -12,11 +12,11 @@ function GameOver(screenManager)
 GameOver.prototype.Setup = function()
 {
     // Background
-    this.FillBackground("#FFF");
+    this.FillBackground("#ccc");
 
     // Score
     this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
-        "Score: " + this.Game().getScore().toString(), "bold 48px Arial", "center", "middle", "#454", this.mScreenManager.mLayerName);
+        "Score: " , "bold 48px Arial", "center", "middle", "#454", this.mScreenManager.mLayerName);
 
     // Try again
     this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.7),

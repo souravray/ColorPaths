@@ -36,7 +36,8 @@ MyGame = function()
         {id:'blue-up', url:'assets/images/tile-blue-source-path-up.png'},
         {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
-        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'}
+        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -70,19 +71,24 @@ MyGame.prototype =
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             console.log(this.mDrawtoolObj);
-        }
+        }    
+
     },
     subclassMouseDown: function()
     { 
         if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
             var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
             this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
+            if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
+                this.EndGame();
+            }
         };
     },
     subclassUpdateGame: function(elapsedTime)
     {  
         this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
     }
+
 }
 extend(MyGame, TGE.Game, null);
 
@@ -114,6 +120,7 @@ Board.prototype = {
                 this.currentBoard[rowCounter][columnCounter].SetScale(scale);
                 this.currentBoard[rowCounter][columnCounter].state =  this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1);
             };
+
         };
     },
     getBoardElement: function( x, y){
