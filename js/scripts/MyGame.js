@@ -7,6 +7,7 @@ MyGame = function()
 
     //game entities
     this.mBoardObj;
+    this.mDrawtoolObj;
 
     // Game Images that are required to start the game
     var gameImages = [ 
@@ -78,54 +79,166 @@ MyGame.prototype =
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
-            this.mBoardObj = new boardClass(this, gameMatrix);
+            this.mBoardObj = new Board(this, gameMatrix);
+            this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
+            console.log(this.mDrawtoolObj);
         }
-    }    
+    },
+    subclassMouseDown: function()
+    { 
+        if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
+            var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
+            this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
+        };
+    },
+    subclassUpdateGame: function(elapsedTime)
+    {  
+        this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
+    }
 }
 extend(MyGame, TGE.Game, null);
 
 
 //board
 
-var boardClass = function(gameContext, templateMatrix){
+var Board = function(gameContext, templateMatrix){
+    this.offsetX = 0 , this.offsetY =0;
+    this.gameContex = gameContext;
     this.boardTemplateMatrix = templateMatrix;
     this.currentBoard = new Array();
-    this.prepareNewBoard(gameContext);
+    this.prepareNewBoard();
 };
 
-boardClass.prototype = {
-    prepareNewBoard: function(gameContext){
-        var scale = Math.floor(gameContext.Width()/gameContext.rowsAndColumns)/gameContext.tilesWidthHeight;
+Board.prototype = {
+    prepareNewBoard: function(){
+        var scale = Math.floor(this.gameContex.Width()/this.gameContex.rowsAndColumns)/this.gameContex.tilesWidthHeight;
 
-        var effectiveTielsWidthHeight = gameContext.tilesWidthHeight * scale;
-        var ofsetX = (gameContext.Width() - (gameContext.rowsAndColumns*effectiveTielsWidthHeight))/2.0;
-        var ofsetY = (gameContext.Height() - (gameContext.rowsAndColumns*effectiveTielsWidthHeight))- ofsetX;
+        var effectiveTielsWidthHeight = this.gameContex.tilesWidthHeight * scale;
+        this.offsetX = (this.gameContex.Width() - (this.gameContex.rowsAndColumns*effectiveTielsWidthHeight))/2.0;
+        this.offsetY = (this.gameContex.Height() - (this.gameContex.rowsAndColumns*effectiveTielsWidthHeight))- this.offsetX;
 
-        for (var rowCounter = 0; rowCounter < gameContext.rowsAndColumns ; rowCounter++)
+        for (var rowCounter = 0; rowCounter < this.gameContex.rowsAndColumns ; rowCounter++)
         {
             this.currentBoard[rowCounter]= new Array();
-            for (var columnCounter = 0; columnCounter < gameContext.rowsAndColumns; columnCounter++) 
+            for (var columnCounter = 0; columnCounter < this.gameContex.rowsAndColumns; columnCounter++) 
             {           
-                this.currentBoard[rowCounter][columnCounter]= gameContext.CreateWorldEntity(TGE.ScreenEntity).Setup( ofsetX + effectiveTielsWidthHeight/2.0 + (effectiveTielsWidthHeight*rowCounter), ofsetY + effectiveTielsWidthHeight/2.0 + (effectiveTielsWidthHeight*columnCounter), this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1) ); 
+                this.currentBoard[rowCounter][columnCounter]= this.gameContex.CreateWorldEntity(TGE.ScreenEntity).Setup( this.offsetX + effectiveTielsWidthHeight/2.0 + (effectiveTielsWidthHeight*rowCounter), this.offsetY + effectiveTielsWidthHeight/2.0 + (effectiveTielsWidthHeight*columnCounter), this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1) ); 
                 this.currentBoard[rowCounter][columnCounter].SetScale(scale);
                 this.currentBoard[rowCounter][columnCounter].state =  this.boardTemplateMatrix.e(rowCounter+1,columnCounter+1);
             };
         };
+    },
+    getBoardElement: function( x, y){
+        var col = Math.ceil( (x-this.offsetX)/((this.gameContex.Width()-(this.offsetX*2))/this.currentBoard.length) ) -1;
+        var row = Math.ceil( (y-this.offsetY)/((this.gameContex.Height()-(this.offsetY+this.offsetX))/this.currentBoard.length) ) -1;
+       
+       return {x:col, y:row};
     }
 }
 
+
+//drawtools 
+
+var Drawtool = function(board){
+    this.state = 0; //state 0 not drawing, 1 drawing, 2 erasing
+    this.board=null;
+    this.setBoard(board);
+}
+
+Drawtool.prototype = 
+{
+    setBoard: function(board){
+        this.board = board;
+        this.tool = null;
+    },
+    selectTool: function(boardx,boardy ){
+        if(this.state==0){
+            var e = this.board[boardx][boardy];
+            if(!e.state.match(/^blank$/g)){
+                if(e.state.match(/path/g)){
+                    console.log("gggg");
+                }else{
+                    this.state = 1;
+                    this.tool = new Pen(this.board,{x:boardx, y:boardy});
+                }
+
+             }
+        }
+    },
+    deselectTool: function(){
+        if(this.state==1){
+            this.tool=null;
+            this.state=0;
+        } 
+    },
+    draw: function(point){
+        if(this.tool!=null){
+         this.tool.draw(point);
+        }
+    }
+}
+
+var Pen =  function(board, origin){
+    this.origin =  origin;
+    this.drawhistory = new Array(origin);
+    this.board = board;
+}
+
+Pen.prototype = {
+    draw: function(point){
+        var lastpoint = this.drawhistory[this.drawhistory.length-1];
+        if(lastpoint.x!=point.x || lastpoint.y!=point.y){
+            this.drawhistory.push(point);
+            
+            var lastE = this.board[lastpoint.x][lastpoint.y];
+            if(lastE != null){
+                if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
+                    if((lastpoint.x - point.x)<0){
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-right")
+                        } else {
+                            
+                        }
+                    } else {
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-left")
+                        } else {
+                            
+                        }
+                    }
+                }else{
+                    if((lastpoint.y - point.y)<0){
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-down")
+                        } else {
+                            
+                        }
+                    } else {
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source
+                            lastE.SetImage(lastE.state+"-up")
+                        } else {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 // game levels
 
 var gameLevels = new Array(
     $M([
-      ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","blue","blank","blank","blank", "blank"],
-      ["blank","blank","blank","red","blank","blank", "blank"],
-      ["blank","blank","red","blank","blank","blank", "blank"],
-      ["green","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blue","blank","blank","blank","green", "blank"],
-      ["blank","blank","blank","blank","blank","blank", "blank"]
+      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
+      ["blank","blank","blue","blank","blank","blank", "blank",  "blank",  "blank"],
+      ["blank","blank","blank","red","blank","blank", "blank",  "blank",  "blank"],
+      ["blank","blank","red","blank","blank","blank", "blank",  "blank",  "blank"],
+      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
+      ["blank","blue","blank","blank","blank","green", "blank",  "blank",  "blank"],
+      ["green","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"],
+      ["blank","blue","blank","blank","blank","green", "blank",  "blank",  "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank",  "blank",  "blank"]
     ]),
     $M([
       ["blank","blank","blank","blank","blank","blank", "blank"],
