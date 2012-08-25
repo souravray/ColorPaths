@@ -16,9 +16,9 @@ MyGame = function()
         {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
         {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
         {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
-        {id:'pause-button',url:'assets/images/pause-button.png'},
-        {id:'resume-button',url:'assets/images/resume-button.png'},
-        {id:'gameover-button', url:'assets/images/tryagain-button.png'}
+        {id:'pause_button',url:'assets/images/pause-button.png'},
+        {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain-button.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -51,8 +51,7 @@ MyGame.prototype =
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new boardClass(this, gameMatrix);
         }
-    }  
-    
+    }    
 }
 extend(MyGame, TGE.Game, null);
 
