@@ -190,7 +190,7 @@ Drawtool.prototype =
             var e = this.board[boardx][boardy];
             if(!e.state.match(/^blank$/g)){
                 if(e.state.match(/path/g)){
-                    console.log("gggg");
+                    
                 }else{
                     this.state = 1;
                     this.tool = new Pen(this.board,{x:boardx, y:boardy});
@@ -223,7 +223,7 @@ Pen.prototype = {
         var lastpoint = this.drawhistory[this.drawhistory.length-1];
         if(lastpoint.x!=point.x || lastpoint.y!=point.y){
             this.drawhistory.push(point);
-            
+            console.log(this.drawhistory);
             var lastE = this.board[lastpoint.x][lastpoint.y];
             if(lastE != null){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
@@ -243,6 +243,7 @@ Pen.prototype = {
                         }
                     }
                 }else{
+                    console.log(lastpoint.y+" - "+point.y);
                     if((lastpoint.y - point.y)<0){
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-down")
