@@ -11,14 +11,31 @@ MyGame = function()
     // Game Images that are required to start the game
     var gameImages = [ 
     	{id:'blank', url:'assets/images/tile.png'},
-        {id:'color', url:'assets/images/tile-light-source.png'},
-        {id:'color-up', url:'assets/images/tile-light-source-path-up.png'},
-        {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
-        {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
-        {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
-        {id:'pause_button',url:'assets/images/pause-button.png'},
-        {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
-        {id:'gameover_tryagain_button', url:'assets/images/tryagain-button.png'}
+        {id:'pink', url:'assets/images/tile-pink-source.png'},
+        {id:'pink-up', url:'assets/images/tile-pink-source-path-up.png'},
+        {id:'pink-down', url:'assets/images/tile-pink-source-path-down.png'},
+        {id:'pink-right', url:'assets/images/tile-pink-source-path-right.png'},
+        {id:'pink-left', url:'assets/images/tile-pink-source-path-left.png'},
+        {id:'red', url:'assets/images/tile-red-source.png'},
+        {id:'red-up', url:'assets/images/tile-red-source-path-up.png'},
+        {id:'red-down', url:'assets/images/tile-red-source-path-down.png'},
+        {id:'red-right', url:'assets/images/tile-red-source-path-right.png'},
+        {id:'red-left', url:'assets/images/tile-red-source-path-left.png'},
+        {id:'yellow', url:'assets/images/tile-yellow-source.png'},
+        {id:'yellow-up', url:'assets/images/tile-yellow-source-path-up.png'},
+        {id:'yellow-down', url:'assets/images/tile-yellow-source-path-down.png'},
+        {id:'yellow-right', url:'assets/images/tile-yellow-source-path-right.png'},
+        {id:'yellow-left', url:'assets/images/tile-yellow-source-path-left.png'},
+        {id:'green', url:'assets/images/tile-green-source.png'},
+        {id:'green-up', url:'assets/images/tile-green-source-path-up.png'},
+        {id:'green-down', url:'assets/images/tile-green-source-path-down.png'},
+        {id:'green-right', url:'assets/images/tile-green-source-path-right.png'},
+        {id:'green-left', url:'assets/images/tile-green-source-path-left.png'},
+        {id:'blue', url:'assets/images/tile-blue-source.png'},
+        {id:'blue-up', url:'assets/images/tile-blue-source-path-up.png'},
+        {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
+        {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
+        {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'}
     	 ];
 
     // Tell the game about this list of assets - the "required" category is
@@ -27,7 +44,7 @@ MyGame = function()
 
     //Game state handler
     this.gameState=1;   // 0- paused 1-active 2- over
-    this.gameLevel=1;   // 1 to this.mLevels.lenght
+    this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
 }
 
@@ -91,20 +108,20 @@ boardClass.prototype = {
 var gameLevels = new Array(
     $M([
       ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","color","blank","blank","blank", "blank"],
+      ["blank","blank","blue","blank","blank","blank", "blank"],
       ["blank","blank","blank","red","blank","blank", "blank"],
-      ["blank","blank","color","blank","blank","blank", "blank"],
-      ["color","blank","blank","blank","blank","blank", "blank"],
-      ["blank","color","blank","blank","blank","color", "blank"],
+      ["blank","blank","red","blank","blank","blank", "blank"],
+      ["green","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blue","blank","blank","blank","green", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank"]
     ]),
     $M([
       ["blank","blank","blank","blank","blank","blank", "blank"],
-      ["blank","blank","color","blank","blank","blank", "blank"],
-      ["blank","blank","blank","color","blank","blank", "blank"],
-      ["blank","blank","color","blank","blank","blank", "blank"],
-      ["color","blank","blank","blank","blank","blank", "blank"],
-      ["blank","color","blank","blank","blank","color", "blank"],
+      ["blank","blank","pink","blank","blank","blank", "blank"],
+      ["blank","blank","blank","green","blank","blank", "blank"],
+      ["blank","blank","green","blank","blank","blank", "blank"],
+      ["pink","blank","blank","blank","blank","blank", "blank"],
+      ["blank","blue","blank","blank","blank","blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank"]
     ])
 );
