@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="game-elements.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="336.92031"
+     inkscape:cy="820.80241"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="0,1"
+       position="82.731494,819.18321"
+       id="guide3079" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="95.282639,846.05326"
+       id="guide3081" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985"
+       width="41.515503"
+       height="41.515503"
+       x="69.242249"
+       y="186.20477" />
+    <path
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 111.19939,186.20476 41.5155,0 0,41.51552 -41.5155,0 z"
+       id="rect2985-6"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-7"
+       width="41.515503"
+       height="41.515503"
+       x="153.15656"
+       y="186.20477" />
+    <path
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 69.242249,228.0762 41.515511,0 0,41.5155 -41.515511,0 z"
+       id="rect2985-8"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-7-6"
+       width="41.515503"
+       height="41.515503"
+       x="153.15656"
+       y="228.07619"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-2"
+       width="41.515503"
+       height="41.515503"
+       x="69.242249"
+       y="270.03036" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-75"
+       width="41.515503"
+       height="41.515503"
+       x="111.19939"
+       y="270.03036" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-7-7"
+       width="41.515503"
+       height="41.515503"
+       x="153.15656"
+       y="270.03036" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       inkscape:transform-center-x="-29.910619"
+       inkscape:transform-center-y="5.9397017"
+       d="m 110.75776,196.58364 0,10.37888 0,10.37887 -10.21859,0.11556 -0.16029,10.26333 -10.378877,0 -10.378877,0 0,-31.13664 c 6.919251,0 13.838502,0 20.757754,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       id="rect2985-26" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 152.71489,196.58364 0,10.37888 0,10.37887 -41.5155,0 0,-10.37887 0,-10.37888 z"
+       id="rect2985-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       inkscape:transform-center-x="29.910618"
+       inkscape:transform-center-y="5.9397017"
+       d="m 153.15655,196.58364 0,10.37888 0,10.37887 10.21859,0.11556 0.1603,10.26333 10.37887,0 10.37887,0 0,-31.13664 c -6.91925,0 -13.8385,0 -20.75774,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       id="rect2985-26-6" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       inkscape:transform-center-x="-29.910619"
+       inkscape:transform-center-y="-5.9396923"
+       d="m 110.75776,301.167 0,-10.37889 0,-10.37887 -10.21859,-0.11556 -0.16029,-10.26332 -10.378871,0 -10.378878,0 0,31.13664 c 6.919252,0 13.838503,0 20.757749,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       id="rect2985-26-5" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 152.71489,301.16698 0,-10.37888 0,-10.37887 -41.5155,0 0,10.37887 0,10.37888 z"
+       id="rect2985-5-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       inkscape:transform-center-x="29.910618"
+       inkscape:transform-center-y="-5.9396923"
+       d="m 153.15655,301.167 0,-10.37889 0,-10.37887 10.21859,-0.11556 0.1603,-10.26332 10.37887,0 10.37887,0 0,31.13664 c -6.91925,0 -13.8385,0 -20.75774,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       id="rect2985-26-6-5" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 79.621126,228.0762 10.378877,0 10.378877,0 0,41.5155 -10.378877,0 -10.378877,0 z"
+       id="rect2985-8-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 265.23011,186.20574 41.5155,0 0,41.51551 -41.5155,0 z"
+       id="rect2985-6-2"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 223.27296,228.07717 41.51551,0 0,41.5155 -41.51551,0 z"
+       id="rect2985-8-7"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-3-2"
+       width="41.515503"
+       height="41.515503"
+       x="265.23013"
+       y="228.07715"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-7-6-7"
+       width="41.515503"
+       height="41.515503"
+       x="307.18726"
+       y="228.07715"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-75-0"
+       width="41.515503"
+       height="41.515503"
+       x="265.23013"
+       y="270.03131"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 285.98785,217.34236 -20.75774,0 0,-10.37887 0,-10.37888 20.75774,0 z"
+       id="rect2985-5-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 306.74561,301.16796 c 0,-6.91925 0,-13.83851 0,-20.75776 l -20.75776,0 0,20.75776 z"
+       id="rect2985-5-2-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 254.40959,248.83491 0,20.75776 -10.37887,0 -10.37889,0 0,-20.75776 z"
+       id="rect2985-8-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3165-3"
+       sodipodi:cx="157.68481"
+       sodipodi:cy="258.36966"
+       sodipodi:rx="7.9549513"
+       sodipodi:ry="6.0987959"
+       d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
+       transform="matrix(1.3191116,0,0,1.7205804,119.94114,-195.71087)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3165-3-0"
+       sodipodi:cx="157.68481"
+       sodipodi:cy="258.36966"
+       sodipodi:rx="7.9549513"
+       sodipodi:ry="6.0987959"
+       d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
+       transform="matrix(1.3191116,0,0,1.7205804,77.983993,-195.71087)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3165-3-7"
+       sodipodi:cx="157.68481"
+       sodipodi:cy="258.36966"
+       sodipodi:rx="7.9549513"
+       sodipodi:ry="6.0987959"
+       d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
+       transform="matrix(1.3191116,0,0,1.7205804,77.983987,-237.58228)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3165-3-7-8"
+       sodipodi:cx="157.68481"
+       sodipodi:cy="258.36966"
+       sodipodi:rx="7.9549513"
+       sodipodi:ry="6.0987959"
+       d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
+       transform="matrix(1.3191116,0,0,1.7205804,77.983993,-153.75671)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 317.56614,228.07714 10.37888,0 10.37888,0 0,20.75775 -20.75776,0 z"
+       id="rect2985-8-4-3-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff00ff;fill-opacity:0.98636367;stroke:#ff00ff;stroke-width:2;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3165-3-0-3"
+       sodipodi:cx="157.68481"
+       sodipodi:cy="258.36966"
+       sodipodi:rx="7.9549513"
+       sodipodi:ry="6.0987959"
+       d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
+       transform="matrix(1.3191116,0,0,1.7205804,36.026845,-195.71085)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-light-source-path-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
