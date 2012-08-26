@@ -306,6 +306,7 @@ Pen.prototype = {
                         } else if(lastE.state.match(/^blank$/g)) {
                             if(previousToLastpoint != null){
                                lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                               lastE.state = "path";
                             }
                             this.drawhistory.push(point);
                         }
@@ -317,6 +318,7 @@ Pen.prototype = {
                         } else if(lastE.state.match(/^blank$/g)) {
                             if(previousToLastpoint != null){
                                 lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                                lastE.state = "path";
                             }
                             this.drawhistory.push(point);
                         }
@@ -330,6 +332,7 @@ Pen.prototype = {
                         } else if(lastE.state.match(/^blank$/g)) {
                             if(previousToLastpoint != null){
                                lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                               lastE.state = "path";
                             }
                             this.drawhistory.push(point);
                         }
@@ -341,6 +344,7 @@ Pen.prototype = {
                         } else if(lastE.state.match(/^blank$/g)) {
                             if(previousToLastpoint != null){  
                                 lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                                lastE.state = "path";
                             }
                             this.drawhistory.push(point);
                         }
