@@ -8,6 +8,9 @@ MyGame = function()
     //game entities
     this.mBoardObj;
     this.mDrawtoolObj;
+    this.remainingTimeText;
+    this.pathCompleted;
+    this.totalTimeForLevel = 180;
 
     // Game Images that are required to start the game
     var gameImages = [ 
@@ -54,7 +57,6 @@ MyGame = function()
         {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
         {id:'mainmenu_play_button', url:'assets/images/play_button.png'},
-
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
@@ -63,7 +65,9 @@ MyGame = function()
         {id:'pink-path-right-down', url:'assets/images/ttile-pink-path-up-right.png'},
         {id:'pink-path-left-up', url:'assets/images/tile-pink-path-left-up.png'},
         {id:'pink-path-down-left', url:'assets/images/tile-pink-path-down-left.png'},
-    	];
+ 
+        {id:'quit-game', url:'assets/images/quit-game.png'}
+    	 ];
 
     // Tell the game about this list of assets - the "required" category is
     // for assets that need to be fully loaded before the game can start
@@ -88,22 +92,20 @@ MyGame.prototype =
         this.xPadding = 50;
         this.yPadding = 50; 
         this.loadGame();
-    },
+       },
 
     loadGame: function()
     {
         this.ClearScene();
-        this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.1), this.mScreenManager.YFromPercentage(0.07),
-        "restart-level", this.restart.bind(this), 1);
         // Fill the background in with white
         this.SetBackgroundColor("#ccc");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#000");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#000");
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
-            console.log("ok");
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
-            console.log(this.mDrawtoolObj);
         }
     },
 
@@ -119,19 +121,37 @@ MyGame.prototype =
             if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
                 var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
                 this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
-                if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
-                    this.EndGame();
-                }
+                 if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
+                     this.EndGame();
+                 }
             }
         }
     },
+    
     subclassMouseUp: function()
     {  
-        this.mDrawtoolObj.deselectTool();
+        if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
+        {
+            this.mDrawtoolObj.deselectTool();
+        }
     },
+
     subclassUpdateGame: function(elapsedTime)
-    {  
-        this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
+    { 
+        this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
+        if(this.getRemainingTime(GameTimer.getUptime()) == 0)
+         {
+            this.EndGame();
+         }
+        else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
+         {
+            this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
+         }
+    },
+
+    getRemainingTime : function(elapsedTime)
+    {
+        return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
     }
 
 }
@@ -168,6 +188,7 @@ Board.prototype = {
 
         };
     },
+
     getBoardElement: function( x, y){
         var col = Math.ceil( (x-this.offsetX)/((this.gameContex.Width()-(this.offsetX*2))/this.currentBoard.length) ) -1;
         var row = Math.ceil( (y-this.offsetY)/((this.gameContex.Height()-(this.offsetY+this.offsetX))/this.currentBoard.length) ) -1;
@@ -204,12 +225,14 @@ Drawtool.prototype =
             }
         }
     },
+    
     deselectTool: function(){
         if(this.state==1){
             this.tool=null;
             this.state=0;
         } 
     },
+
     draw: function(point){
         if(this.tool!=null){
          this.tool.draw(point);
