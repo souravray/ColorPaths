@@ -357,6 +357,14 @@ Pen.prototype = {
     }
 }
 
+var Eraser =  function(master,board,path,startingPoint){
+    this.master=master;
+    this.pathArrayOne = new Array();
+    this.pathArrayTwo = new Array();
+    this.board = board;
+    this.startingPoint = startingPoint;
+}
+
 // game levels
 
 var gameLevels = new Array(
