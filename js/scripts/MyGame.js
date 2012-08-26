@@ -185,7 +185,6 @@ MyGame.prototype =
     {
         return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
     }
-
 }
 extend(MyGame, TGE.Game, null);
 

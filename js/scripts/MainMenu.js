@@ -14,7 +14,7 @@ MainMenu.prototype.Setup = function()
     this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
         "screen-background");
     this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
-        "mainmenu_play_button", MainMenu.prototype.playGame.bind(this), 1, this.mScreenManager.mLayerName);
+        "mainmenu_play_button", MainMenu.prototype.playGame.bind(this), 2, this.mScreenManager.mLayerName);
 }
 
 MainMenu.prototype.playGame = function()
