@@ -34,6 +34,9 @@ PauseScreen.prototype.Setup = function()
 
     this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.33), this.mScreenManager.YFromPercentage(0.7),
         "Quit" , "italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
+    this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.9),
+        "game-name", this.mScreenManager.mLayerName);
 }
 
 PauseScreen.prototype.quitGame = function()
