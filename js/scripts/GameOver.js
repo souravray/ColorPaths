@@ -13,14 +13,13 @@ GameOver.prototype.Setup = function()
 {
     GameTimer.stopTimer();
     GameTimer.resetTimer();
-    // Background
-    this.FillBackground("#ccc");
 
-    // Score
+    this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
+        "screen-background");
+
     this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
-        "Score: " , "bold 48px Arial", "center", "middle", "#454", this.mScreenManager.mLayerName);
+        "Score: " , "bold 48px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
 
-    // Try again
     this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.7),
         "gameover_tryagain_button", GameOver.prototype.playAgain.bind(this), 3, this.mScreenManager.mLayerName);
 }

@@ -10,9 +10,8 @@ function PauseScreen(screenManager)
 PauseScreen.prototype.Setup = function()
 {
 	GameTimer.pauseTimer();
-	this.FillBackground("#CCC");
-	this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.6),
-        "pause-screen-info");
+	this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
+        "screen-background");
 	this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.2), this.mScreenManager.YFromPercentage(0.5),
         "pausescreen_resume_button", PauseScreen.prototype.resumeGame.bind(this), 1,this.mScreenManager.mLayerName);
 	this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.2), this.mScreenManager.YFromPercentage(0.6),
