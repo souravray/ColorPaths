@@ -42,6 +42,7 @@ PauseScreen.prototype.Setup = function()
 PauseScreen.prototype.quitGame = function()
 {
     this.Game().PauseGame(false);
+    this.Game().gamePlayStatus = this.Game().stageStatus.QUIT_GAME;
     this.Game().EndGame();
     this.Close();
 }
@@ -49,6 +50,7 @@ PauseScreen.prototype.quitGame = function()
 PauseScreen.prototype.restart = function()
 {
 	GameTimer.resetTimer();
+    this.Game().gamePlayStatus = this.Game().stageStatus.LEVEL_FAILED;
     this.Game().restart();
     this.Game().PauseGame(false);
     this.Close();
