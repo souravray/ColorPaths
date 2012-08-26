@@ -11,11 +11,8 @@ MyGame = function()
 
     // Game Images that are required to start the game
     var gameImages = [ 
+    //loading basic tiles and color source tiles
     	{id:'blank', url:'assets/images/tile.png'},
-        {id:'color-up', url:'assets/images/tile-light-source-path-up.png'},
-        {id:'color-down', url:'assets/images/tile-light-source-path-down.png'},
-        {id:'color-right', url:'assets/images/tile-light-source-path-right.png'},
-        {id:'color-left', url:'assets/images/tile-light-source-path-left.png'},
         {id:'pause_button',url:'assets/images/pause-button.png'},
         {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
         {id:'pink', url:'assets/images/tile-pink-source.png'},
@@ -56,8 +53,17 @@ MyGame = function()
         {id:'aqua-down', url:'assets/images/tile-aqua-source-path-down.png'},
         {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
-        {id:'mainmenu_play_button', url:'assets/images/play_button.png'}
-    	 ];
+        {id:'mainmenu_play_button', url:'assets/images/play_button.png'},
+
+    //loading draw colored path tiles
+        {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
+        {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
+        {id:'pink-path-up-right', url:'assets/images/tile-pink-path-up-right.png'},
+        {id:'pink-path-right-down', url:'assets/images/tile-pink-path-right-down.png'},
+        {id:'pink-path-right-down', url:'assets/images/ttile-pink-path-up-right.png'},
+        {id:'pink-path-left-up', url:'assets/images/tile-pink-path-left-up.png'},
+        {id:'pink-path-down-left', url:'assets/images/tile-pink-path-down-left.png'},
+    	];
 
     // Tell the game about this list of assets - the "required" category is
     // for assets that need to be fully loaded before the game can start
@@ -193,10 +199,9 @@ Drawtool.prototype =
                     
                 }else{
                     this.state = 1;
-                    this.tool = new Pen(this.board,{x:boardx, y:boardy});
+                    this.tool = new Pen(this, this.board,{x:boardx, y:boardy});
                 }
-
-             }
+            }
         }
     },
     deselectTool: function(){
@@ -214,7 +219,6 @@ Drawtool.prototype =
 
 var Pen =  function(master,board, origin){
     this.master=master;
-    this.origin =  origin;
     this.drawhistory = new Array(origin);
     this.board = board;
 }
@@ -224,9 +228,9 @@ Pen.prototype = {
         var lastpoint = this.drawhistory[this.drawhistory.length-1];
         if(lastpoint.x!=point.x || lastpoint.y!=point.y){
             this.drawhistory.push(point);
-            console.log(this.drawhistory);
             var lastE = this.board[lastpoint.x][lastpoint.y];
-            if(lastE != null){
+            var currentE = this.board[point.x][point.y];
+            if(lastE != null && currentE != null && currentE.state.match(/^blank/g)){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
                     if((lastpoint.x - point.x)<0){
                         if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
@@ -261,6 +265,8 @@ Pen.prototype = {
                         }
                     }
                 }
+            } else {
+                this.master.deselectTool();
             }
         }
     }
