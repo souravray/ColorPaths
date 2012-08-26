@@ -10,8 +10,9 @@ MyGame = function()
     this.mDrawtoolObj;
     this.remainingTimeText;
     this.pathCompleted;
-    this.totalTimeForLevel = 180;
+    this.totalTimeForLevel = 50;
     // added by chetan ----
+    this.score = 0;
     this.stageStatus = {
         LEVEL_FAILED:"level_failed",
         LEVEL_PASS:"level_pass",
@@ -67,6 +68,7 @@ MyGame = function()
         {id:'screen-background', url:'assets/images/screen-background.png'},
         {id:'game-name', url:'assets/images/game-name.png'},
         {id:'play-again', url:'assets/images/play-again.png'},
+        {id:'next-level', url:'assets/images/next-level.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
@@ -199,7 +201,14 @@ MyGame.prototype =
     getRemainingTime : function(elapsedTime)
     {
         return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
+    },
+
+    // added by chetan ----
+    getScore : function()
+    {
+        return this.score + this.getRemainingTime(GameTimer.getUptime());
     }
+    // ---
 }
 extend(MyGame, TGE.Game, null);
 
