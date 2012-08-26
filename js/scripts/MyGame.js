@@ -57,6 +57,7 @@ MyGame = function()
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
         {id:'mainmenu_play_button', url:'assets/images/play_button.png'},
         {id:'screen-background', url:'assets/images/screen-background.png'},
+        {id:'game-name', url:'assets/images/game-name.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
