@@ -18,11 +18,11 @@ MyGame = function()
     	{id:'blank', url:'assets/images/tile.png'},
         {id:'pause_button',url:'assets/images/pause-button.png'},
         {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
-        {id:'pink', url:'assets/images/tile-pink-source.png'},
-        {id:'pink-up', url:'assets/images/tile-pink-source-path-up.png'},
-        {id:'pink-down', url:'assets/images/tile-pink-source-path-down.png'},
-        {id:'pink-right', url:'assets/images/tile-pink-source-path-right.png'},
-        {id:'pink-left', url:'assets/images/tile-pink-source-path-left.png'},
+        {id:'green', url:'assets/images/tile-green-source.png'},
+        {id:'green-up', url:'assets/images/tile-green-source-path-up.png'},
+        {id:'green-down', url:'assets/images/tile-green-source-path-down.png'},
+        {id:'green-right', url:'assets/images/tile-green-source-path-right.png'},
+        {id:'green-left', url:'assets/images/tile-green-source-path-left.png'},
         {id:'red', url:'assets/images/tile-red-source.png'},
         {id:'red-up', url:'assets/images/tile-red-source-path-up.png'},
         {id:'red-down', url:'assets/images/tile-red-source-path-down.png'},
@@ -62,10 +62,44 @@ MyGame = function()
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
         {id:'pink-path-up-right', url:'assets/images/tile-pink-path-up-right.png'},
         {id:'pink-path-right-down', url:'assets/images/tile-pink-path-right-down.png'},
-        {id:'pink-path-right-down', url:'assets/images/ttile-pink-path-up-right.png'},
         {id:'pink-path-left-up', url:'assets/images/tile-pink-path-left-up.png'},
         {id:'pink-path-down-left', url:'assets/images/tile-pink-path-down-left.png'},
- 
+        {id:'red-path-hz', url:'assets/images/tile-red-path-horizontal.png'},
+        {id:'red-path-vr', url:'assets/images/tile-red-path-vertical.png'},
+        {id:'red-path-up-right', url:'assets/images/tile-red-path-up-right.png'},
+        {id:'red-path-right-down', url:'assets/images/tile-red-path-right-down.png'},
+        {id:'red-path-left-up', url:'assets/images/tile-red-path-left-up.png'},
+        {id:'red-path-down-left', url:'assets/images/tile-red-path-down-left.png'},
+        {id:'yellow-path-hz', url:'assets/images/tile-yellow-path-horizontal.png'},
+        {id:'yellow-path-vr', url:'assets/images/tile-yellow-path-vertical.png'},
+        {id:'yellow-path-up-right', url:'assets/images/tile-yellow-path-up-right.png'},
+        {id:'yellow-path-right-down', url:'assets/images/tile-yellow-path-right-down.png'},
+        {id:'yellow-path-left-up', url:'assets/images/tile-yellow-path-left-up.png'},
+        {id:'yellow-path-down-left', url:'assets/images/tile-yellow-path-down-left.png'},
+        {id:'green-path-hz', url:'assets/images/tile-green-path-horizontal.png'},
+        {id:'green-path-vr', url:'assets/images/tile-green-path-vertical.png'},
+        {id:'green-path-up-right', url:'assets/images/tile-green-path-up-right.png'},
+        {id:'green-path-right-down', url:'assets/images/tile-green-path-right-down.png'},
+        {id:'green-path-left-up', url:'assets/images/tile-green-path-left-up.png'},
+        {id:'green-path-down-left', url:'assets/images/tile-green-path-down-left.png'},
+        {id:'blue-path-hz', url:'assets/images/tile-blue-path-horizontal.png'},
+        {id:'blue-path-vr', url:'assets/images/tile-blue-path-vertical.png'},
+        {id:'blue-path-up-right', url:'assets/images/tile-blue-path-up-right.png'},
+        {id:'blue-path-right-down', url:'assets/images/tile-blue-path-right-down.png'},
+        {id:'blue-path-left-up', url:'assets/images/tile-blue-path-left-up.png'},
+        {id:'blue-path-down-left', url:'assets/images/tile-blue-path-down-left.png'},
+        {id:'orange-path-hz', url:'assets/images/tile-orange-path-horizontal.png'},
+        {id:'orange-path-vr', url:'assets/images/tile-orange-path-vertical.png'},
+        {id:'orange-path-up-right', url:'assets/images/tile-orange-path-up-right.png'},
+        {id:'orange-path-right-down', url:'assets/images/tile-orange-path-right-down.png'},
+        {id:'orange-path-left-up', url:'assets/images/tile-orange-path-left-up.png'},
+        {id:'orange-path-down-left', url:'assets/images/tile-orange-path-down-left.png'},
+        {id:'aqua-path-hz', url:'assets/images/tile-aqua-path-horizontal.png'},
+        {id:'aqua-path-vr', url:'assets/images/tile-aqua-path-vertical.png'},
+        {id:'aqua-path-up-right', url:'assets/images/tile-aqua-path-up-right.png'},
+        {id:'aqua-path-right-down', url:'assets/images/tile-aqua-path-right-down.png'},
+        {id:'aqua-path-left-up', url:'assets/images/tile-aqua-path-left-up.png'},
+        {id:'aqua-path-down-left', url:'assets/images/tile-aqua-path-down-left.png'},
         {id:'quit-game', url:'assets/images/quit-game.png'}
     	 ];
 
@@ -75,7 +109,7 @@ MyGame = function()
 
     //Game state handler
     this.gameState=1;   // 0- paused 1-active 2- over
-    this.gameLevel=0;   // 0 to this.mLevels.lenght-1
+    this.gameLevel=1;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
 }
 
@@ -244,47 +278,71 @@ var Pen =  function(master,board, origin){
     this.master=master;
     this.drawhistory = new Array(origin);
     this.board = board;
+    this.drawhistory.origin = this.board[origin.x][origin.y].state;
 }
 
 Pen.prototype = {
     draw: function(point){
-        var lastpoint = this.drawhistory[this.drawhistory.length-1];
+        var lastpoint = this.drawhistory[this.drawhistory.length-1], previousToLastpoint = null;
+        if(this.drawhistory.length>1){
+            previousToLastpoint = this.drawhistory[this.drawhistory.length-2];
+        }
+
         if(lastpoint.x!=point.x || lastpoint.y!=point.y){
-            this.drawhistory.push(point);
             var lastE = this.board[lastpoint.x][lastpoint.y];
+            // var previousToLastE = null;
+            // if( previousToLastpoint != null){
+            //    previousToLastE = this.board[previousToLastpoint.x][previousToLastpoint.y];
+            // }
             var currentE = this.board[point.x][point.y];
-            if(lastE != null && currentE != null && currentE.state.match(/^blank/g)){
+            if(lastE != null && currentE != null && !currentE.state.match(/^path/g) && ((lastpoint.x - point.x)==0 || (lastpoint.y - point.y)==0)){
                 if( Math.abs(lastpoint.x - point.x) > Math.abs(lastpoint.y - point.y) ){
+                    var direction = "";
                     if((lastpoint.x - point.x)<0){
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^path$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-right")
                             lastE.state = lastE.state+"-right";
-                        } else {
-                            
+                            this.drawhistory.push(point);
+                        } else if(lastE.state.match(/^blank$/g)) {
+                            if(previousToLastpoint != null){
+                               lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                            }
+                            this.drawhistory.push(point);
                         }
                     } else {
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^path$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-left")
                             lastE.state = lastE.state+"-left";
-                        } else {
-                            
+                            this.drawhistory.push(point);
+                        } else if(lastE.state.match(/^blank$/g)) {
+                            if(previousToLastpoint != null){
+                                lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                            }
+                            this.drawhistory.push(point);
                         }
                     }
                 }else{
-                    console.log(lastpoint.y+" - "+point.y);
                     if((lastpoint.y - point.y)<0){
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^path$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-down")
                             lastE.state = lastE.state+"-down";
-                        } else {
-                            
+                            this.drawhistory.push(point);
+                        } else if(lastE.state.match(/^blank$/g)) {
+                            if(previousToLastpoint != null){
+                               lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                            }
+                            this.drawhistory.push(point);
                         }
                     } else {
-                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
+                        if(lastE.state.match(/^[^-]*$/g) && !lastE.state.match(/^path$/g) && !lastE.state.match(/^blank$/g)){ //incase of source was the last element
                             lastE.SetImage(lastE.state+"-up")
                             lastE.state = lastE.state+"-up";
-                        } else {
-                            
+                            this.drawhistory.push(point);
+                        } else if(lastE.state.match(/^blank$/g)) {
+                            if(previousToLastpoint != null){  
+                                lastE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(previousToLastpoint, lastpoint, point));
+                            }
+                            this.drawhistory.push(point);
                         }
                     }
                 }
@@ -339,7 +397,7 @@ var gameLevels = new Array(
       ["blank","blank","blank","blank","aqua","green", "blank", "blank", "blank"],
       ["blank","blank","blank","red","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
-      ["blank","blank","blank","blank","pink","blank", "pink", "blank", "blank"],
+      ["blank","blank","blank","blank","green","blank", "green", "blank", "blank"],
       ["blank","orange","blue","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"]
     ]),
@@ -351,8 +409,46 @@ var gameLevels = new Array(
       ["blank","blank","blank","blank","yellow","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "orange", "aqua"],
-      ["blank","blank","pink","blank","blank","pink", "red", "blue", "blank"],
+      ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "green", "orange", "blue"]
     ])
 );
+
+// path utilities
+var directions = new Array();
+directions["ll"] = "hz";
+directions["rr"] = "hz";
+directions["uu"] = "vr";
+directions["dd"] = "vr";
+directions["lu"] = "left-up";
+directions["dr"] = "left-up";
+directions["ur"] = "up-right";
+directions["ld"] = "up-right";
+directions["rd"] = "right-down";
+directions["ul"] = "right-down";
+directions["dl"] = "down-left";
+directions["ru"] = "down-left";
+
+var getDirection = function(previousToLastpoint, lastpoint, currentPoint){
+     if(previousToLastpoint.x > lastpoint.x){
+       direction = "l" 
+    } else if(previousToLastpoint.x < lastpoint.x){
+        direction = "r"
+    } else if(previousToLastpoint.y < lastpoint.y){
+         direction = "d"
+    } else if(previousToLastpoint.y > lastpoint.y){
+         direction = "u"
+    }
+
+    if(lastpoint.x > currentPoint.x){
+       direction = direction+"l" 
+    } else if(lastpoint.x < currentPoint.x){
+        direction = direction+"r"
+    } else if(lastpoint.y < currentPoint.y){
+         direction = direction+"d"
+    } else if(lastpoint.y > currentPoint.y){
+         direction = direction+"u";
+    }
+    return directions[direction];
+};

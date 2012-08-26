@@ -29,7 +29,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2"
      inkscape:cx="252.59577"
-     inkscape:cy="401.35771"
+     inkscape:cy="441.35771"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1323,6 +1323,16 @@
        d="m 165.63977,258.36966 a 7.9549513,6.0987959 0 1 1 -15.90991,0 7.9549513,6.0987959 0 1 1 15.90991,0 z"
        transform="matrix(1.3191116,0,0,1.7205804,20.110079,174.77555)"
        inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-blue-source-path-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-7-6-78-7-8"
+       width="41.515503"
+       height="41.515503"
+       x="375.33801"
+       y="567.2467"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
