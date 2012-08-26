@@ -43,7 +43,6 @@ MyGame = function()
         {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
         {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
-        {id:'pause-screen-info', url:'assets/images/pause-screen-info.png'},
         {id:'restart-level', url:'assets/images/restartLevel.png'},        
         {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'},
         {id:'orange', url:'assets/images/tile-orange-source.png'},
@@ -57,6 +56,7 @@ MyGame = function()
         {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
         {id:'mainmenu_play_button', url:'assets/images/play_button.png'},
+        {id:'screen-background', url:'assets/images/screen-background.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
@@ -131,10 +131,8 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
-        // Fill the background in with white
-        this.SetBackgroundColor("#ccc");
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#000");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#000");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
@@ -187,7 +185,6 @@ MyGame.prototype =
     {
         return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
     }
-
 }
 extend(MyGame, TGE.Game, null);
 
