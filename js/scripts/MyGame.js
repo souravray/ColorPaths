@@ -164,7 +164,7 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
-    TGE.Game.prototype.ResizeViewportForDevice.call(this);
+    // TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 // New methods and overrides for your game class will go in here
