@@ -157,7 +157,7 @@ MyGame = function()
 
     //Game state handler
     this.gameState=1;   // 0- paused 1-active 2- over
-    this.gameLevel=2;   // 0 to this.mLevels.lenght-1
+    this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
 }
 
@@ -228,6 +228,8 @@ MyGame.prototype =
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
             // ---
             this.EndGame();
+         } else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length){
+            this.gamePlayStatus = this.stageStatus.LEVEL_PASSED;
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
          {
@@ -244,6 +246,66 @@ MyGame.prototype =
     getScore : function()
     {
         return this.score + this.getRemainingTime(GameTimer.getUptime());
+    },
+    ResizeViewportForDevice: function () 
+    {
+        //TGE.Game.prototype.ResizeViewportForDevice.call(this);
+        viewport = document.querySelector("meta[name=viewport]");
+        deviceChecking = this.mDeviceInfo.OSOrDevices;
+        switch(this.mDeviceInfo.OSOrDevices)
+        {
+            case 'iPhone':
+            {   
+
+                if (window.navigator.standalone == true)
+                {
+                    document.getElementById('game_canvas').style.marginTop = '50px';
+                    viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50, user-scalable=no');
+                }
+                else
+                {
+                    if(this.mCanvasDiv.clientWidth==960||this.mCanvasDiv.clientWidth==640){
+                        viewport.setAttribute("content","width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no")
+                    }else{
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no');
+                    }
+                }
+            }
+            break;
+
+            case 'Android':
+
+                // Android browser popup block is hyper sensitive to _blank window open calls
+                this.mDefaultLinkTarget = "_self";
+                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
+
+                break;
+
+            case 'iPad':                
+                if (window.navigator.standalone == true)
+                {
+                    document.getElementById('game_canvas').style.marginTop = '50px';
+                    viewport.setAttribute('content', 'width=device-width; maximum-scale=1.07; minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
+                }
+                else
+                {
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.07, minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
+                }
+                
+                break;
+
+            case 'Windows':
+            case 'Mac':
+            {                
+                // Use click handler to prevent popup blocker (click is not supported on mobile)
+                this.mButtonClickEvent = "click";
+            }
+                break;
+
+            default:
+                viewport.setAttribute('content', 'width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1,user-scalable=no');
+                break;
+        }
     }
     // ---
 }
@@ -530,6 +592,14 @@ Eraser.prototype =
 // game levels
 
 var gameLevels = new Array(
+    //5*5 level 1
+    $M([
+      ["red","blank","blank","pink","yellow"],
+      ["blank","blank","green","blank","blank"],
+      ["red","blank","blank","yellow","aqua"],
+      ["pink","blank","blank","green","blank"],
+      ["aqua","blank","blank","blank","blank"]      
+    ]),
 
     //7*7 level 1
     $M([
