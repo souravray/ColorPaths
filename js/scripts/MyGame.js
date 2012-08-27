@@ -733,7 +733,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])*/
+    ])
 );
 
 // path utilities
