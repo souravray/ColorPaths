@@ -47,12 +47,16 @@ GameOver.prototype.Setup = function()
 
 GameOver.prototype.playNextLevel = function()
 {
-    // go to next level
+    GameTimer.resetTimer();
+    this.Game().gameLevel++;
+    this.Game().gamePlayStatus = this.Game().stageStatus.LEVEL_FAILED;
+    this.Game().Replay();;
+    this.Close();
 }
 
 GameOver.prototype.playAgain = function()
 {
-    // start game from level 1
+
 }
 
 GameOver.prototype.retryLevel = function()
