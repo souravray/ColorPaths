@@ -206,7 +206,6 @@ MyGame.prototype =
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             this.totalTimeForLevel = this.mBoardObj.paths / 2 * 20;
-            console.log(this.currentLevel);
             this.currentLevel.SetText("Level : "+ (this.gameLevel+1));
             this.currentLevelSize.SetText(this.mBoardObj.boardTemplateMatrix.rows() + " x " + this.mBoardObj.boardTemplateMatrix.cols());
         }
@@ -300,8 +299,11 @@ MyGame.prototype =
                 }
                 else
                 {
-                    
-                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.75, minimum-scale=0.75,initial-scale=0.75, user-scalable=no');
+                    if(this.mCanvasDiv.clientWidth==960||this.mCanvasDiv.clientWidth==640){
+                        viewport.setAttribute("content","width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no")
+                    }else{
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no');
+                    }
                 }
             }
             break;
@@ -310,7 +312,7 @@ MyGame.prototype =
 
                 // Android browser popup block is hyper sensitive to _blank window open calls
                 this.mDefaultLinkTarget = "_self";
-                //viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
+                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
 
                 break;
 
@@ -318,12 +320,11 @@ MyGame.prototype =
                 if (window.navigator.standalone == true)
                 {
                     document.getElementById('game_canvas').style.marginTop = '50px';
-                    viewport.setAttribute('content', 'width=device-width, maximum-scale=1.5 minimum-scale=1.5,initial-scale=1.5,user-scalable=no');
+                    viewport.setAttribute('content', 'width=device-width; maximum-scale=1.07; minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
                 }
                 else
                 {
-                    document.getElementById('game_canvas').style.marginTop = '50px';
-                    viewport.setAttribute('content', 'width=device-width, maximum-scale=1.5 minimum-scale=1.5,initial-scale=1.5,user-scalable=no');
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.07, minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
                 }
                 
                 break;
@@ -732,7 +733,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])
+    ])*/
 );
 
 // path utilities
