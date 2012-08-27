@@ -159,6 +159,7 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
+    TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 // New methods and overrides for your game class will go in here
@@ -182,16 +183,22 @@ MyGame.prototype =
         this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
         this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
+        console.log(gameMatrix);
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
         }
     },
-
+    loadNextLevel: function(){
+        if(this.gameLevel < gameLevels.lenght-1){
+            this.gameLevel++;
+            this.restart();
+        }
+    },
     restart: function()
     {
-        this.loadGame()
+        this.loadGame();
     },
 
     subclassMouseDown: function()
@@ -221,6 +228,7 @@ MyGame.prototype =
 
     subclassUpdateGame: function(elapsedTime)
     { 
+
         this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
@@ -229,7 +237,8 @@ MyGame.prototype =
             // ---
             this.EndGame();
          } else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length){
-            this.gamePlayStatus = this.stageStatus.LEVEL_PASSED;
+            this.gamePlayStatus = this.stageStatus.LEVEL_PASS;
+            this.EndGame();
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
          {
