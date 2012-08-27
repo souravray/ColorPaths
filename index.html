@@ -33,8 +33,9 @@
         function initializeTGE() {
              _myGame = new MyGame();
             if(_myGame.IsPlatformAcceptable()) {
-                _myGame.Launch("game_canvas");
+                _myGame.Launch("game_canvas", "game_canvas_wrong");
             }
+            console.log(_myGame);
         }
         window.addEventListener ? window.addEventListener("load",initializeTGE,false) : window.attachEvent && window.attachEvent("onload",initializeTGE);
 
@@ -47,6 +48,8 @@
 
     <div id="viewporter" align="center" width="100%">
         <div id="game_canvas" style="position:relative; width:320px; height:416px; top:0px; text-align: center; vertical-align: middle;">
+        </div>
+        <div id="game_canvas_wrong" style="position:relative; width:416px; height:320px; top:0px; text-align: center; vertical-align: middle;"> This game is only supported in landscape mode.
         </div>
     </div>
 
