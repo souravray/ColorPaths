@@ -206,7 +206,6 @@ TGE.Game.prototype.OrientationChanged= function (a){
                       break;
         }
     }
->>>>>>> upstream/master
 
 // New methods and overrides for your game class will go in here
 MyGame.prototype =
