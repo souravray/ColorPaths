@@ -170,10 +170,8 @@ MyGame = function()
 }
 
 TGE.Game.prototype.OrientationChanged= function (a){
-                    console.log("start" + a); 
-    if(this.mReorientationDiv==null){
-        return;
-    }
+                
+    
                     console.log("before switch" + a); 
     
 
