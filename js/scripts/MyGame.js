@@ -12,6 +12,7 @@ MyGame = function()
     this.currentLevelSize;
     this.remainingTimeText;
     this.pathCompleted;
+    this.scoreText;
     this.totalTimeForLevel = 50;
     this.scoreText;
     this.score = 0;
@@ -70,6 +71,9 @@ MyGame = function()
         {id:'screen-background', url:'assets/images/screen-background.png'},
         {id:'game-name', url:'assets/images/game-name.png'},
         {id:'play-again', url:'assets/images/play-again.png'},
+        {id:'time', url:'assets/images/time.png'},
+        {id:'score', url:'assets/images/score.png'},
+        {id:'path', url:'assets/images/path.png'},
         {id:'next-level', url:'assets/images/next-level.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
@@ -161,7 +165,7 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
-    TGE.Game.prototype.ResizeViewportForDevice.call(this);
+    // TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 // New methods and overrides for your game class will go in here
@@ -170,8 +174,8 @@ MyGame.prototype =
 	// TGE.Game method override - called when the gameplay starts
     subclassStartPlaying: function()
     {
-    	// Clear everything in the scene
-        this.rowsAndColumns =13;
+    	// Clear everything in the scene+ 40
+        this.rowsndColumns =13;
         this.tilesWidthHeight = 42;
         this.buttonsWidthHeight = 20;
         this.xPadding = 50;
@@ -182,11 +186,16 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 20 ,this.yPadding + 10, " : "+this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 100 ,this.yPadding + 10, " : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
-        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200 ,this.yPadding + 10, " : 0 ", "bold italic 18px Arial", "center", "middle", "#FFF");        
-        this.currentLevel = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 120 ,20 , "Level : 0", "bold 14px Arial", "center", "middle", "#DDD");
-        this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 20, this.yPadding + 10,"time");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 30,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 100, this.yPadding + 14,"path");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 140 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 200, this.yPadding + 14,"score");
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 230,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
+        
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         // console.log(gameMatrix);
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
@@ -226,8 +235,9 @@ MyGame.prototype =
     subclassUpdateGame: function(elapsedTime)
     { 
 
-        this.remainingTimeText.SetText(" : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
-        this.pathCompleted.SetText(" : "+ this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
+        this.remainingTimeText.SetText(this.getRemainingTime(GameTimer.getUptime()) +" sec");
+        this.pathCompleted.SetText(this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
+
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
@@ -248,6 +258,7 @@ MyGame.prototype =
          }
 
          this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
+         this.scoreText.SetText(this.getScore());
     },
 
     getRemainingTime : function(elapsedTime)
@@ -642,6 +653,39 @@ var gameLevels = new Array(
       ["blank","blank","blank","blank","blank","blank", "blank"],
       ["blank","red","blank","orange","red","green", "blank"],
       ["blank","blank","blank","pink","yellow","blank", "yellow"]
+    ]),
+    //8x8 level 11
+    $M([
+      ["blank","blank","blank","blank","blank","green", "pink", "blank"],
+      ["blank","aqua","blank","blank","blank","blank", "aqua", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "yellow", "blank"],
+      ["blank","orange","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","yellow","red","blank","blank", "orange", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "red", "blank"],
+      ["pink","blue","blank","blue","blank","blank", "blank", "blank"]
+    ]),
+    //8x8 level 12
+    $M([
+      ["blank","blank","blank","blank","blank","red", "yellow", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "blank"],
+      ["blank","blank","blue","blank","blank","blank", "blue", "blank"],
+      ["blank","blank","blank","blank","blank","green", "blank", "blank"],
+      ["blank","blank","blank","aqua","blank","blank", "blank", "orange"],
+      ["blank","blank","yellow","blank","blank","orange", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "red", "aqua"]
+    ]),
+    //8x8 level 13
+    $M([
+      ["orange","blank","blank","blank","blank","blank", "blank", "red"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","blank","yellow","blank","green", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "aqua", "red"],
+      ["blank","blank","blank","blank","green","blank", "blank", "blank"],
+      ["blank","blank","aqua","blank","blank","blank", "orange", "blank"],
+      ["yellow","blank","blank","blank","blue","blank", "blue", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"]
     ]),    
     //9*9 level 1
     $M([
