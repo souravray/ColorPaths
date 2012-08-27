@@ -643,7 +643,7 @@ var gameLevels = new Array(
       ["blank","blank","blank","aqua","yellow","red", "blank"],
       ["blank","orange","blank","blank","blank","yellow", "blue"],
       ["blue","red","blank","blank","blank","blank", "aqua"]
-    ])/*,
+    ]),
     //7*7 level 8
     $M([
       ["blank","pink","blue","blank","blank","blank", "blank"],
@@ -732,7 +732,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])*/
+    ])
 );
 
 // path utilities
