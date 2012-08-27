@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.48.0 r9654"
    sodipodi:docname="game-elements.svg"
-   inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-blue-source-path-left.png"
+   inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-down.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -50,8 +50,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="261.10163"
-     inkscape:cy="309.54291"
+     inkscape:cx="261.60163"
+     inkscape:cy="249.54291"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1361,13 +1361,19 @@
        style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 177.24225,791.60443 41.5155,0 0,41.5155 -41.5155,0 z"
        id="rect2985-8-0-3-4"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
-       style="fill:#339900;fill-opacity:0.98636367;stroke:#339900;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       style="fill:#fd6601;fill-opacity:1;stroke:#fd6601;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 208.37886,812.36218 0,20.75775 -10.37888,0 -10.37888,0 0,-20.75775 z"
        id="rect2985-8-4-2-3-7"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#6600cc;fill-opacity:1;stroke:none;fill-rule:evenodd;opacity:0"
        id="rect3175"
@@ -1379,26 +1385,38 @@
        style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 255.24225,833.11993 41.5155,0 0,-41.5155 -41.5155,0 z"
        id="rect2985-8-0-3-4-6"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
-       style="fill:#339900;fill-opacity:0.98636367;stroke:#339900;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       style="fill:#fd6601;fill-opacity:1;stroke:#fd6601;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 286.37886,812.36218 0,-20.75775 -10.37888,0 -10.37888,0 0,20.75775 z"
        id="rect2985-8-4-2-3-7-2"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect2985-6-75-5-1-6"
        width="41.515503"
        height="41.515503"
        x="177.24225"
-       y="739.10443" />
+       y="739.10443"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
-       style="fill:#0197fd;fill-opacity:0.98636367;stroke:#0197fd;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       style="fill:#fd6601;fill-opacity:1;stroke:#fd6601;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;opacity:0.93999999999999995"
        d="m 198.00002,749.48327 -20.75775,0 0,10.37888 0,10.37888 20.75775,0 z"
        id="rect2985-5-2-5-9-3"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect2985-6-75-5-1-1"
@@ -1406,12 +1424,91 @@
        height="41.515503"
        x="-286.75775"
        y="737.10443"
-       transform="scale(-1,1)" />
+       transform="scale(-1,1)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
-       style="fill:#0197fd;fill-opacity:0.98636367;stroke:#0197fd;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       style="fill:#fd6601;fill-opacity:1;stroke:#fd6601;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 265.99998,747.48327 20.75775,0 0,10.37888 0,10.37888 -20.75775,0 z"
        id="rect2985-5-2-5-9-39"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 314.24225,787.35443 41.5155,0 0,41.5155 -41.5155,0 z"
+       id="rect2985-8-0-3-4-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#01fdfd;fill-opacity:1;stroke:#01fdfd;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 345.37886,808.11218 0,20.75775 -10.37888,0 -10.37888,0 0,-20.75775 z"
+       id="rect2985-8-4-2-3-7-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-vertical-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 392.24225,828.86993 41.5155,0 0,-41.5155 -41.5155,0 z"
+       id="rect2985-8-0-3-4-6-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-red-path-vertical-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#01fdfd;fill-opacity:1;stroke:#01fdfd;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 423.37886,808.11218 0,-20.75775 -10.37888,0 -10.37888,0 0,20.75775 z"
+       id="rect2985-8-4-2-3-7-2-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-red-path-vertical-down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-75-5-1-6-8"
+       width="41.515503"
+       height="41.515503"
+       x="314.24225"
+       y="734.85443"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="opacity:0.93999999000000001;fill:#01fdfd;fill-opacity:1;stroke:#01fdfd;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 335.00002,745.23327 -20.75775,0 0,10.37888 0,10.37888 20.75775,0 z"
+       id="rect2985-5-2-5-9-3-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-right.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#333333;fill-opacity:0.98636367;stroke:#262630;stroke-width:0.48449898;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-6-75-5-1-1-5"
+       width="41.515503"
+       height="41.515503"
+       x="-423.75775"
+       y="732.85443"
+       transform="scale(-1,1)"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#01fdfd;fill-opacity:1;stroke:#01fdfd;stroke-width:0.48449898000000002;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 402.99998,743.23327 20.75775,0 0,10.37888 0,10.37888 -20.75775,0 z"
+       id="rect2985-5-2-5-9-39-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/var/www/ColorPaths/assets/images/tile-orange-path-horizontal-left.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
