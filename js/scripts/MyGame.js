@@ -28,7 +28,7 @@ MyGame = function()
     // Game Images that are required to start the game
     var gameImages = [ 
     //loading basic tiles and color source tiles
-    	{id:'blank', url:'assets/images/tile.png'},
+        {id:'blank', url:'assets/images/tile.png'},
         {id:'pause_button',url:'assets/images/pause-button.png'},
         {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
         {id:'pink', url:'assets/images/tile-pink-source.png'},
@@ -156,7 +156,7 @@ MyGame = function()
         {id:'aqua-path-vr-down', url:'assets/images/tile-aqua-path-vertical-down.png'},
 
         {id:'quit-game', url:'assets/images/quit-game.png'}
-    	 ];
+         ];
 
     // Tell the game about this list of assets - the "required" category is
     // for assets that need to be fully loaded before the game can start
@@ -166,7 +166,6 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
-    TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 TGE.Game.prototype.OrientationChanged= function (a){
@@ -193,10 +192,10 @@ TGE.Game.prototype.OrientationChanged= function (a){
 // New methods and overrides for your game class will go in here
 MyGame.prototype =
 {
-	// TGE.Game method override - called when the gameplay starts
+    // TGE.Game method override - called when the gameplay starts
     subclassStartPlaying: function()
     {
-    	// Clear everything in the scene+ 40
+        // Clear everything in the scene+ 40
         this.rowsndColumns =13;
         this.tilesWidthHeight = 42;
         this.buttonsWidthHeight = 20;
@@ -320,11 +319,8 @@ MyGame.prototype =
                 }
                 else
                 {
-                    if(this.mCanvasDiv.clientWidth==960||this.mCanvasDiv.clientWidth==640){
-                        viewport.setAttribute("content","width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no")
-                    }else{
-                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no');
-                    }
+                    viewport.setAttribute('content', 'width=device-width, maximum-scale=0.85, minimum-scale=0.85,initial-scale=0.85, user-scalable=no');
+                    
                 }
             }
             break;
@@ -333,7 +329,7 @@ MyGame.prototype =
 
                 // Android browser popup block is hyper sensitive to _blank window open calls
                 this.mDefaultLinkTarget = "_self";
-                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
+                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=1.0, minimum-scale=1.0,initial-scale=1.0');
 
                 break;
 
@@ -345,7 +341,8 @@ MyGame.prototype =
                 }
                 else
                 {
-                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.07, minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
+                        document.getElementById('game_canvas').style.marginTop = '50px';
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.3, minimum-scale=1.3,initial-scale=1.3,user-scalable=no');
                 }
                 
                 break;
