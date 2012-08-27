@@ -10,6 +10,7 @@ MyGame = function()
     this.mDrawtoolObj;
     this.remainingTimeText;
     this.pathCompleted;
+    this.scoreText;
     this.totalTimeForLevel = 50;
     // added by chetan ----
     this.score = 0;
@@ -69,6 +70,9 @@ MyGame = function()
         {id:'screen-background', url:'assets/images/screen-background.png'},
         {id:'game-name', url:'assets/images/game-name.png'},
         {id:'play-again', url:'assets/images/play-again.png'},
+        {id:'time', url:'assets/images/time.png'},
+        {id:'score', url:'assets/images/score.png'},
+        {id:'path', url:'assets/images/path.png'},
         {id:'next-level', url:'assets/images/next-level.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
@@ -169,8 +173,8 @@ MyGame.prototype =
 	// TGE.Game method override - called when the gameplay starts
     subclassStartPlaying: function()
     {
-    	// Clear everything in the scene
-        this.rowsAndColumns =13;
+    	// Clear everything in the scene+ 40
+        this.rowsndColumns =13;
         this.tilesWidthHeight = 42;
         this.buttonsWidthHeight = 20;
         this.xPadding = 50;
@@ -181,10 +185,18 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 20, this.yPadding + 10,"time");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 30,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 100, this.yPadding + 14,"path");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 140 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
+        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 200, this.yPadding + 14,"score");
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 230,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
+        
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
-        console.log(gameMatrix);
+        // console.log(gameMatrix);
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
@@ -205,12 +217,6 @@ MyGame.prototype =
             if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
                 var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
                 this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
-
-                // added by chetan ----
-                 // if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
-                 //     this.EndGame();
-                 // }
-                 // ---
             }
         }
     },
@@ -226,9 +232,8 @@ MyGame.prototype =
     subclassUpdateGame: function(elapsedTime)
     { 
 
-        this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
-        this.pathCompleted.SetText("Path completed : "+ this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
-        
+        this.remainingTimeText.SetText(this.getRemainingTime(GameTimer.getUptime()) +" sec");
+        this.pathCompleted.SetText(this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             // added by chetan ----
@@ -249,6 +254,7 @@ MyGame.prototype =
          }
 
          this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
+         this.scoreText.SetText(this.getScore());
     },
 
     getRemainingTime : function(elapsedTime)
@@ -645,6 +651,39 @@ var gameLevels = new Array(
       ["blank","blank","blank","blank","blank","blank", "blank"],
       ["blank","red","blank","orange","red","green", "blank"],
       ["blank","blank","blank","pink","yellow","blank", "yellow"]
+    ]),
+    //8x8 level 11
+    $M([
+      ["blank","blank","blank","blank","blank","green", "pink", "blank"],
+      ["blank","aqua","blank","blank","blank","blank", "aqua", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "yellow", "blank"],
+      ["blank","orange","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","yellow","red","blank","blank", "orange", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "red", "blank"],
+      ["pink","blue","blank","blue","blank","blank", "blank", "blank"]
+    ]),
+    //8x8 level 12
+    $M([
+      ["blank","blank","blank","blank","blank","red", "yellow", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "green", "blank"],
+      ["blank","blank","blue","blank","blank","blank", "blue", "blank"],
+      ["blank","blank","blank","blank","blank","green", "blank", "blank"],
+      ["blank","blank","blank","aqua","blank","blank", "blank", "orange"],
+      ["blank","blank","yellow","blank","blank","orange", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "red", "aqua"]
+    ]),
+    //8x8 level 13
+    $M([
+      ["orange","blank","blank","blank","blank","blank", "blank", "red"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"],
+      ["blank","blank","blank","yellow","blank","green", "blank", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "aqua", "red"],
+      ["blank","blank","blank","blank","green","blank", "blank", "blank"],
+      ["blank","blank","aqua","blank","blank","blank", "orange", "blank"],
+      ["yellow","blank","blank","blank","blue","blank", "blue", "blank"],
+      ["blank","blank","blank","blank","blank","blank", "blank", "blank"]
     ]),    
     //9*9 level 1
     $M([

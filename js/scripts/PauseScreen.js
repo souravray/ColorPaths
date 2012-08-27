@@ -14,6 +14,15 @@ PauseScreen.prototype.Setup = function()
     this.FillBackground(this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
          "screen-background",this.mScreenManager.mLayerName));
 
+    this.CreateUIEntity(TGE.ScreenEntity).Setup(this.mScreenManager.XFromPercentage(0.1), this.mScreenManager.YFromPercentage(0.4),"time", this.mScreenManager.mLayerName);
+    this.CreateUIEntity(TGE.Text).Setup(this.mScreenManager.XFromPercentage(0.26), this.mScreenManager.YFromPercentage(0.41), this.Game().getRemainingTime(GameTimer.getUptime()) +" sec", "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+        
+    this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.45), this.mScreenManager.YFromPercentage(0.4),"path", this.mScreenManager.mLayerName);
+    this.CreateUIEntity(TGE.Text).Setup(this.mScreenManager.XFromPercentage(0.57), this.mScreenManager.YFromPercentage(0.41), this.Game().mDrawtoolObj.paths.length + " / " + this.Game().mBoardObj.paths, "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+        
+    this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.75), this.mScreenManager.YFromPercentage(0.4),"score", this.mScreenManager.mLayerName);
+    this.CreateUIEntity(TGE.Text).Setup(this.mScreenManager.XFromPercentage(0.83), this.mScreenManager.YFromPercentage(0.41), this.Game().getScore(), "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
     this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
         "Game is paused..." , "italic 30px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
 
