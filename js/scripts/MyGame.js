@@ -168,20 +168,31 @@ MyGame = function()
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
     TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
+
 TGE.Game.prototype.OrientationChanged= function (a){
+                    console.log("start" + a); 
     if(this.mReorientationDiv==null){
-        return
+        return;
     }
-    switch(a){
-        case"landscape": this.mCanvasDiv.style.display="none";
+                    console.log("before switch" + a); 
+    
+
+    switch(window.oriendtation){
+        case-90:
+        case 90: this.mCanvasDiv.style.display="none";
                         this.mReorientationDiv.style.display="block";
                         this.PauseGame(true);
                         break;
                         
-        case"portrait": this.mReorientationDiv.style.display="none";
+        case 0:
+        case 180: this.mReorientationDiv.style.display="none";
                          this.mCanvasDiv.style.display="block";
-                            break
-                        }
+                        break;
+        default :
+                    console.log("in default" + a); 
+                     
+                      break;
+        }
     }
 
 // New methods and overrides for your game class will go in here
@@ -748,7 +759,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])*/
+    ])
 );
 
 // path utilities
