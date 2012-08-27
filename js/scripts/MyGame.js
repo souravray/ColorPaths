@@ -189,14 +189,10 @@ MyGame.prototype =
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
+            this.totalTimeForLevel = this.mBoardObj.paths / 2 * 20;
         }
     },
-    loadNextLevel: function(){
-        if(this.gameLevel < gameLevels.lenght-1){
-            this.gameLevel++;
-            this.restart();
-        }
-    },
+
     restart: function()
     {
         this.loadGame();
@@ -231,6 +227,8 @@ MyGame.prototype =
     { 
 
         this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
+        this.pathCompleted.SetText("Path completed : "+ this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
+        
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             // added by chetan ----
@@ -239,6 +237,10 @@ MyGame.prototype =
             this.EndGame();
          } else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length){
             this.gamePlayStatus = this.stageStatus.LEVEL_PASS;
+            if(this.gameLevel == (gameLevels.length - 1))
+            {
+                this.gamePlayStatus = this.stageStatus.GAME_COMPLETE;
+            }
             this.EndGame();
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
@@ -246,7 +248,7 @@ MyGame.prototype =
             this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
          }
 
-         this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.point * this.mDrawtoolObj.paths.length;
+         this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
     },
 
     getRemainingTime : function(elapsedTime)

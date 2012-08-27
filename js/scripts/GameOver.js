@@ -43,6 +43,17 @@ GameOver.prototype.Setup = function()
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.8),
             "next-level", GameOver.prototype.playNextLevel.bind(this), 2, this.mScreenManager.mLayerName);
      }
+     else if(this.Game().gamePlayStatus == this.Game().stageStatus.GAME_COMPLETE)
+     {
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
+            "You have completed all levels." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.3),
+            "Come next week to play more...." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+        
+        this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.6),
+            "play-again", GameOver.prototype.playAgain.bind(this), 2, this.mScreenManager.mLayerName);
+     }
 }
 
 GameOver.prototype.playNextLevel = function()
@@ -50,18 +61,23 @@ GameOver.prototype.playNextLevel = function()
     GameTimer.resetTimer();
     this.Game().gameLevel++;
     this.Game().gamePlayStatus = this.Game().stageStatus.LEVEL_FAILED;
-    this.Game().Replay();;
+    this.Game().Replay();
     this.Close();
 }
 
 GameOver.prototype.playAgain = function()
 {
-
+    GameTimer.resetTimer();
+    this.Game().gameLevel = 0;
+    this.Game().gamePlayStatus = this.Game().stageStatus.LEVEL_FAILED;
+    this.Game().Replay();
+    this.Close();
 }
 
 GameOver.prototype.retryLevel = function()
 {
     GameTimer.resetTimer();
+    this.Game().gamePlayStatus = this.Game().stageStatus.LEVEL_FAILED;
     this.Game().Replay();
     this.Close();
 }
