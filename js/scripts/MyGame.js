@@ -16,9 +16,10 @@ MyGame = function()
     this.stageStatus = {
         LEVEL_FAILED:"level_failed",
         LEVEL_PASS:"level_pass",
-        QUIT_GAME:"quit_game"
+        QUIT_GAME:"quit_game",
+        GAME_COMPLETE:"game_complete"
     };
-
+    this.score = 0;
     this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
     // ---
     // Game Images that are required to start the game
@@ -235,6 +236,8 @@ MyGame.prototype =
          {
             this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
          }
+
+         this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.point * this.mDrawtoolObj.paths.length;
     },
 
     getRemainingTime : function(elapsedTime)
@@ -245,8 +248,9 @@ MyGame.prototype =
     // added by chetan ----
     getScore : function()
     {
-        return this.score + this.getRemainingTime(GameTimer.getUptime());
+        return this.score;
     },
+
     ResizeViewportForDevice: function () 
     {
         //TGE.Game.prototype.ResizeViewportForDevice.call(this);
