@@ -8,11 +8,13 @@ MyGame = function()
     //game entities
     this.mBoardObj;
     this.mDrawtoolObj;
+    this.currentLevel;
+    this.currentLevelSize;
     this.remainingTimeText;
     this.pathCompleted;
     this.scoreText;
     this.totalTimeForLevel = 50;
-    // added by chetan ----
+    this.scoreText;
     this.score = 0;
     this.stageStatus = {
         LEVEL_FAILED:"level_failed",
@@ -22,7 +24,6 @@ MyGame = function()
     };
     this.score = 0;
     this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
-    // ---
     // Game Images that are required to start the game
     var gameImages = [ 
     //loading basic tiles and color source tiles
@@ -202,6 +203,8 @@ MyGame.prototype =
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             this.totalTimeForLevel = this.mBoardObj.paths / 2 * 20;
+            this.currentLevel.SetText("Level : "+ (this.gameLevel+1));
+            this.currentLevelSize.SetText(this.mBoardObj.boardTemplateMatrix.rows() + " x " + this.mBoardObj.boardTemplateMatrix.cols());
         }
     },
 
@@ -234,13 +237,14 @@ MyGame.prototype =
 
         this.remainingTimeText.SetText(this.getRemainingTime(GameTimer.getUptime()) +" sec");
         this.pathCompleted.SetText(this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
+
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
-            // added by chetan ----
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
-            // ---
             this.EndGame();
-         } else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length){
+         } 
+         else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length)
+         {
             this.gamePlayStatus = this.stageStatus.LEVEL_PASS;
             if(this.gameLevel == (gameLevels.length - 1))
             {
@@ -262,7 +266,6 @@ MyGame.prototype =
         return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
     },
 
-    // added by chetan ----
     getScore : function()
     {
         return this.score;
@@ -328,7 +331,6 @@ MyGame.prototype =
                 break;
         }
     }
-    // ---
 }
 extend(MyGame, TGE.Game, null);
 
@@ -447,7 +449,7 @@ Drawtool.prototype =
         }
     },
     finishErasing: function() {
-        console.log(this.paths);
+        // console.log(this.paths);
         this.state = 0;
         this.deselectTool();
     },
