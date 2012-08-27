@@ -26,23 +26,26 @@ GameOver.prototype.Setup = function()
      }
     else if(this.Game().gamePlayStatus == this.Game().stageStatus.QUIT_GAME)
      {
-        this.Game().this.Game().getScore() = 0;
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
             "play-again", GameOver.prototype.playAgain.bind(this), 2, this.mScreenManager.mLayerName);
      }
     else if(this.Game().gamePlayStatus == this.Game().stageStatus.LEVEL_PASS)
      {
-        this.Game().gameTotalScore += this.Game().getScore();
-
         this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
             "Great, you completed the level..." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
 
         this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.3),
             "Your score is : " + this.Game().getScore() , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.38),
+            "Improve your score...", "bold italic 16px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
         
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
             "gameover_tryagain_button", GameOver.prototype.retryLevel.bind(this), 2, this.mScreenManager.mLayerName);
         
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.7),
+            "I will earn more in next level...", "bold italic 16px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.8),
             "next-level", GameOver.prototype.playNextLevel.bind(this), 2, this.mScreenManager.mLayerName);
      }
@@ -52,13 +55,19 @@ GameOver.prototype.Setup = function()
             "You have completed all levels." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
 
         this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.3),
-            "Come next week to play more...." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+            "Come next week to play more..." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
         
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.6),
             "play-again", GameOver.prototype.playAgain.bind(this), 2, this.mScreenManager.mLayerName);
 
-        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.9),
-            "Total money won : " + this.Game().gameTotalScore , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.85),
+            "You won... ", "bold italic 24px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
+
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.mScreenManager.XFromPercentage(0.44), this.mScreenManager.YFromPercentage(0.92),
+        "score");
+
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.56), this.mScreenManager.YFromPercentage(0.92),
+            this.Game().getGameTotalScore() , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
      }
 }
 

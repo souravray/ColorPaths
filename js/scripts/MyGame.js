@@ -190,14 +190,14 @@ MyGame.prototype =
         this.currentLevel = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 120 ,20 , "Level : 0", "bold 14px Arial", "center", "middle", "#DDD");
         this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 20, this.yPadding + 10,"time");
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 30,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 30, this.yPadding + 10,"time");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 15,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 100, this.yPadding + 14,"path");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 140 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 80, this.yPadding + 14,"path");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 115 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 200, this.yPadding + 14,"score");
-        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 230,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 175, this.yPadding + 14,"score");
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
         
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         // console.log(gameMatrix);
@@ -244,6 +244,7 @@ MyGame.prototype =
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
             this.EndGame();
          } 
          else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length)
@@ -251,16 +252,18 @@ MyGame.prototype =
             this.gamePlayStatus = this.stageStatus.LEVEL_PASS;
             if(this.gameLevel == (gameLevels.length - 1))
             {
+                this.gameTotalScore += this.getScore();
                 this.gamePlayStatus = this.stageStatus.GAME_COMPLETE;
             }
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
             this.EndGame();
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
          {
             this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
          }
 
-         this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
          this.scoreText.SetText(this.getScore());
     },
 
@@ -272,6 +275,11 @@ MyGame.prototype =
     getScore : function()
     {
         return this.score;
+    },
+
+    getGameTotalScore : function()
+    {
+        return this.gameTotalScore;
     },
 
     ResizeViewportForDevice: function () 
@@ -625,7 +633,7 @@ var gameLevels = new Array(
       ["red","blank","blank","yellow","aqua"],
       ["pink","blank","blank","green","blank"],
       ["aqua","blank","blank","blank","blank"]      
-    ])/*,
+    ]),
 
     //7*7 level 1
     $M([
@@ -636,7 +644,7 @@ var gameLevels = new Array(
       ["blank","blank","blank","aqua","yellow","red", "blank"],
       ["blank","orange","blank","blank","blank","yellow", "blue"],
       ["blue","red","blank","blank","blank","blank", "aqua"]
-    ]),
+    ])/*,
     //7*7 level 8
     $M([
       ["blank","pink","blue","blank","blank","blank", "blank"],
