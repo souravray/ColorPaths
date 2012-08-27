@@ -177,16 +177,16 @@ TGE.Game.prototype.OrientationChanged= function (a){
                     console.log("before switch" + a); 
     
 
-    switch(window.oriendtation){
-        case-90:
-        case 90: this.mCanvasDiv.style.display="none";
-                        this.mReorientationDiv.style.display="block";
+    switch(window.orientation){
+        case -90:
+        case 90: document.getElementById("game_canvas").style.display="none";
+                        document.getElementById("game_canvas_wrong").style.display="block";
                         this.PauseGame(true);
                         break;
                         
         case 0:
-        case 180: this.mReorientationDiv.style.display="none";
-                         this.mCanvasDiv.style.display="block";
+        case 180: document.getElementById("game_canvas_wrong").style.display="none";
+                         document.getElementById("game_canvas").style.display="block";
                         break;
         default :
                     console.log("in default" + a); 
@@ -217,13 +217,13 @@ MyGame.prototype =
         this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
         
         this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 30, this.yPadding + 10,"time");
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 15,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 20,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
         
         this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 80, this.yPadding + 14,"path");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 115 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 115 ,this.yPadding + 20, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
         
         this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 175, this.yPadding + 14,"score");
-        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200,this.yPadding + 20, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
         
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         // console.log(gameMatrix);
