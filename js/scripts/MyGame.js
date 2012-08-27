@@ -10,8 +10,17 @@ MyGame = function()
     this.mDrawtoolObj;
     this.remainingTimeText;
     this.pathCompleted;
-    this.totalTimeForLevel = 180;
+    this.totalTimeForLevel = 50;
+    // added by chetan ----
+    this.score = 0;
+    this.stageStatus = {
+        LEVEL_FAILED:"level_failed",
+        LEVEL_PASS:"level_pass",
+        QUIT_GAME:"quit_game"
+    };
 
+    this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
+    // ---
     // Game Images that are required to start the game
     var gameImages = [ 
     //loading basic tiles and color source tiles
@@ -43,8 +52,8 @@ MyGame = function()
         {id:'blue-down', url:'assets/images/tile-blue-source-path-down.png'},
         {id:'blue-right', url:'assets/images/tile-blue-source-path-right.png'},
         {id:'blue-left', url:'assets/images/tile-blue-source-path-left.png'},
-        {id:'restart-level', url:'assets/images/restartLevel.png'},        
-        {id:'gameover_tryagain_button', url:'assets/images/tryagain_button.png'},
+        {id:'restart-level', url:'assets/images/restart-level.png'},        
+        {id:'gameover_tryagain_button', url:'assets/images/tryagain-button.png'},
         {id:'orange', url:'assets/images/tile-orange-source.png'},
         {id:'orange-up', url:'assets/images/tile-orange-source-path-up.png'},
         {id:'orange-down', url:'assets/images/tile-orange-source-path-down.png'},
@@ -55,9 +64,11 @@ MyGame = function()
         {id:'aqua-down', url:'assets/images/tile-aqua-source-path-down.png'},
         {id:'aqua-right', url:'assets/images/tile-aqua-source-path-right.png'},
         {id:'aqua-left', url:'assets/images/tile-aqua-source-path-left.png'},
-        {id:'mainmenu_play_button', url:'assets/images/play_button.png'},
+        {id:'mainmenu_play_button', url:'assets/images/play-button.png'},
         {id:'screen-background', url:'assets/images/screen-background.png'},
         {id:'game-name', url:'assets/images/game-name.png'},
+        {id:'play-again', url:'assets/images/play-again.png'},
+        {id:'next-level', url:'assets/images/next-level.png'},
     //loading draw colored path tiles
         {id:'pink-path-hz', url:'assets/images/tile-pink-path-horizontal.png'},
         {id:'pink-path-vr', url:'assets/images/tile-pink-path-vertical.png'},
@@ -154,9 +165,11 @@ MyGame.prototype =
             if(this.mMouseX > this.mBoardObj.offsetX && this.mMouseX < (this.Width() - this.mBoardObj.offsetX) && this.mMouseY > this.mBoardObj.offsetY && this.mMouseX < (this.Height() - this.mBoardObj.offsetX) ){
                 var selectedElementIndex = this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY);
                 this.mDrawtoolObj.selectTool(selectedElementIndex.x, selectedElementIndex.y);
-                 if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
-                     this.EndGame();
-                 }
+                // added by chetan ----
+                 // if(selectedElementIndex.x==1 && selectedElementIndex.y==1){
+                 //     this.EndGame();
+                 // }
+                 // ---
             }
         }
     },
@@ -174,6 +187,9 @@ MyGame.prototype =
         this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
+            // added by chetan ----
+            this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
+            // ---
             this.EndGame();
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
@@ -185,7 +201,14 @@ MyGame.prototype =
     getRemainingTime : function(elapsedTime)
     {
         return parseInt(this.totalTimeForLevel - elapsedTime) > 0 ? parseInt(this.totalTimeForLevel - elapsedTime) : 0;
+    },
+
+    // added by chetan ----
+    getScore : function()
+    {
+        return this.score + this.getRemainingTime(GameTimer.getUptime());
     }
+    // ---
 }
 extend(MyGame, TGE.Game, null);
 
