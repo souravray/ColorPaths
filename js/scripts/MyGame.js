@@ -170,23 +170,6 @@ MyGame = function()
 }
 
 TGE.Game.prototype.OrientationChanged= function (a){
-    if(this.mReorientationDiv==null){
-        return
-    }
-    switch(a){
-        case"landscape": this.mCanvasDiv.style.display="none";
-                        this.mReorientationDiv.style.display="block";
-                        this.PauseGame(true);
-                        break;
-                        
-        case"portrait": this.mReorientationDiv.style.display="none";
-                         this.mCanvasDiv.style.display="block";
-                            break
-                        }
-    }
-
-
-TGE.Game.prototype.OrientationChanged= function (a){
     console.log("before switch" + a);
 
     switch(window.orientation){
