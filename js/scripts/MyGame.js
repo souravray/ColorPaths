@@ -22,6 +22,7 @@ MyGame = function()
         QUIT_GAME:"quit_game",
         GAME_COMPLETE:"game_complete"
     };
+    this.gameTotalScore = 0;
     this.score = 0;
     this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
     // Game Images that are required to start the game
@@ -165,7 +166,7 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
-    // TGE.Game.prototype.ResizeViewportForDevice.call(this);
+    TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 // New methods and overrides for your game class will go in here
@@ -186,15 +187,17 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
+        this.currentLevel = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 120 ,20 , "Level : 0", "bold 14px Arial", "center", "middle", "#DDD");
+        this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 20, this.yPadding + 10,"time");
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 30,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 30, this.yPadding + 10,"time");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 15,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 100, this.yPadding + 14,"path");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 140 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 80, this.yPadding + 14,"path");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 115 ,this.yPadding + 17, " : 0 / 0", "bold italic 20px Arial", "center", "middle", "#FFF");
         
-        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 200, this.yPadding + 14,"score");
-        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 230,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
+        this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding + 175, this.yPadding + 14,"score");
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200,this.yPadding + 17, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
         
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
         // console.log(gameMatrix);
@@ -203,7 +206,6 @@ MyGame.prototype =
             this.mBoardObj = new Board(this, gameMatrix);
             this.mDrawtoolObj = new Drawtool(this.mBoardObj.currentBoard);
             this.totalTimeForLevel = this.mBoardObj.paths / 2 * 20;
-            console.log(this.currentLevel);
             this.currentLevel.SetText("Level : "+ (this.gameLevel+1));
             this.currentLevelSize.SetText(this.mBoardObj.boardTemplateMatrix.rows() + " x " + this.mBoardObj.boardTemplateMatrix.cols());
         }
@@ -242,6 +244,7 @@ MyGame.prototype =
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
             this.EndGame();
          } 
          else if(this.mBoardObj.paths == this.mDrawtoolObj.paths.length)
@@ -249,16 +252,18 @@ MyGame.prototype =
             this.gamePlayStatus = this.stageStatus.LEVEL_PASS;
             if(this.gameLevel == (gameLevels.length - 1))
             {
+                this.gameTotalScore += this.getScore();
                 this.gamePlayStatus = this.stageStatus.GAME_COMPLETE;
             }
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
             this.EndGame();
          }
         else if(typeof this.mDrawtoolObj != "undefined" || this.mDrawtoolObj != null)
          {
             this.mDrawtoolObj.draw(this.mBoardObj.getBoardElement(this.mMouseX, this.mMouseY));
+            this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
          }
 
-         this.score = this.getRemainingTime(GameTimer.getUptime()) * this.mBoardObj.paths * this.mDrawtoolObj.paths.length;
          this.scoreText.SetText(this.getScore());
     },
 
@@ -270,6 +275,11 @@ MyGame.prototype =
     getScore : function()
     {
         return this.score;
+    },
+
+    getGameTotalScore : function()
+    {
+        return this.gameTotalScore;
     },
 
     ResizeViewportForDevice: function () 
@@ -289,8 +299,11 @@ MyGame.prototype =
                 }
                 else
                 {
-                    
-                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.75, minimum-scale=0.75,initial-scale=0.75, user-scalable=no');
+                    if(this.mCanvasDiv.clientWidth==960||this.mCanvasDiv.clientWidth==640){
+                        viewport.setAttribute("content","width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no")
+                    }else{
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no');
+                    }
                 }
             }
             break;
@@ -299,7 +312,7 @@ MyGame.prototype =
 
                 // Android browser popup block is hyper sensitive to _blank window open calls
                 this.mDefaultLinkTarget = "_self";
-                //viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
+                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
 
                 break;
 
@@ -307,12 +320,11 @@ MyGame.prototype =
                 if (window.navigator.standalone == true)
                 {
                     document.getElementById('game_canvas').style.marginTop = '50px';
-                    viewport.setAttribute('content', 'width=device-width, maximum-scale=1.5 minimum-scale=1.5,initial-scale=1.5,user-scalable=no');
+                    viewport.setAttribute('content', 'width=device-width; maximum-scale=1.07; minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
                 }
                 else
                 {
-                    document.getElementById('game_canvas').style.marginTop = '50px';
-                    viewport.setAttribute('content', 'width=device-width, maximum-scale=1.5 minimum-scale=1.5,initial-scale=1.5,user-scalable=no');
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.07, minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
                 }
                 
                 break;
@@ -721,7 +733,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])
+    ])*/
 );
 
 // path utilities
