@@ -13,6 +13,7 @@ MyGame = function()
     this.remainingTimeText;
     this.pathCompleted;
     this.totalTimeForLevel = 50;
+    this.scoreText;
     this.score = 0;
     this.stageStatus = {
         LEVEL_FAILED:"level_failed",
@@ -181,8 +182,9 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
-        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2,this.yPadding, "Time remaining : "+ this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
-        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 10 ,this.yPadding + 30, "Path completed : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
+        this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 20 ,this.yPadding + 10, " : "+this.totalTimeForLevel +" sec", "bold italic 18px Arial", "center", "middle", "#FFF");
+        this.pathCompleted = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 100 ,this.yPadding + 10, " : 0 / 0", "bold italic 18px Arial", "center", "middle", "#FFF");
+        this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200 ,this.yPadding + 10, " : 0 ", "bold italic 18px Arial", "center", "middle", "#FFF");        
         this.currentLevel = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 120 ,20 , "Level : 0", "bold 14px Arial", "center", "middle", "#DDD");
         this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
@@ -224,8 +226,8 @@ MyGame.prototype =
     subclassUpdateGame: function(elapsedTime)
     { 
 
-        this.remainingTimeText.SetText("Time remaining : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
-        this.pathCompleted.SetText("Path completed : "+ this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
+        this.remainingTimeText.SetText(" : "+ this.getRemainingTime(GameTimer.getUptime()) +" sec");
+        this.pathCompleted.SetText(" : "+ this.mDrawtoolObj.paths.length + " / " + this.mBoardObj.paths);
         if(this.getRemainingTime(GameTimer.getUptime()) == 0)
          {
             this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
