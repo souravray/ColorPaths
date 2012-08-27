@@ -22,6 +22,7 @@ MyGame = function()
         QUIT_GAME:"quit_game",
         GAME_COMPLETE:"game_complete"
     };
+    this.gameTotalScore = 0;
     this.score = 0;
     this.gamePlayStatus = this.stageStatus.LEVEL_FAILED;
     // Game Images that are required to start the game
@@ -165,7 +166,7 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
-    // TGE.Game.prototype.ResizeViewportForDevice.call(this);
+    TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 // New methods and overrides for your game class will go in here
@@ -186,6 +187,8 @@ MyGame.prototype =
     loadGame: function()
     {
         this.ClearScene();
+        this.currentLevel = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 120 ,20 , "Level : 0", "bold 14px Arial", "center", "middle", "#DDD");
+        this.currentLevelSize = this.CreateUIEntity(TGE.Text).Setup(this.Width()/2 - 60,20 , "0 x 0", "bold 14px Arial", "center", "middle", "#999");
         
         this.CreateUIEntity(TGE.ScreenEntity).Setup( this.xPadding - 20, this.yPadding + 10,"time");
         this.remainingTimeText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 30,this.yPadding + 17, this.totalTimeForLevel +" sec", "bold italic 20px Arial", "center", "middle", "#FFF");
@@ -622,7 +625,7 @@ var gameLevels = new Array(
       ["red","blank","blank","yellow","aqua"],
       ["pink","blank","blank","green","blank"],
       ["aqua","blank","blank","blank","blank"]      
-    ]),
+    ])/*,
 
     //7*7 level 1
     $M([
@@ -722,7 +725,7 @@ var gameLevels = new Array(
       ["blank","blank","green","blank","blank","green", "red", "blue", "blank"],
       ["blank","blank","blank","blank","blank","blank", "blank", "blank", "blank"],
       ["blank","blank","blank","blank","blank","blank", "pink", "orange", "blue"]
-    ])
+    ])*/
 );
 
 // path utilities

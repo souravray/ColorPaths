@@ -26,11 +26,14 @@ GameOver.prototype.Setup = function()
      }
     else if(this.Game().gamePlayStatus == this.Game().stageStatus.QUIT_GAME)
      {
+        this.Game().this.Game().getScore() = 0;
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.5),
             "play-again", GameOver.prototype.playAgain.bind(this), 2, this.mScreenManager.mLayerName);
      }
     else if(this.Game().gamePlayStatus == this.Game().stageStatus.LEVEL_PASS)
      {
+        this.Game().gameTotalScore += this.Game().getScore();
+
         this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.2),
             "Great, you completed the level..." , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
 
@@ -53,6 +56,9 @@ GameOver.prototype.Setup = function()
         
         this.CreateUIEntity(TGE.Button).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.6),
             "play-again", GameOver.prototype.playAgain.bind(this), 2, this.mScreenManager.mLayerName);
+
+        this.CreateUIEntity(TGE.Text).Setup( this.mScreenManager.XFromPercentage(0.5), this.mScreenManager.YFromPercentage(0.9),
+            "Total money won : " + this.Game().gameTotalScore , "bold italic 20px Arial", "center", "middle", "#FFF", this.mScreenManager.mLayerName);
      }
 }
 
