@@ -28,7 +28,7 @@ MyGame = function()
     // Game Images that are required to start the game
     var gameImages = [ 
     //loading basic tiles and color source tiles
-        {id:'blank', url:'assets/images/tile.png'},
+    	{id:'blank', url:'assets/images/tile.png'},
         {id:'pause_button',url:'assets/images/pause-button.png'},
         {id:'pausescreen_resume_button',url:'assets/images/resume-button.png'},
         {id:'pink', url:'assets/images/tile-pink-source.png'},
@@ -156,7 +156,7 @@ MyGame = function()
         {id:'aqua-path-vr-down', url:'assets/images/tile-aqua-path-vertical-down.png'},
 
         {id:'quit-game', url:'assets/images/quit-game.png'}
-         ];
+    	 ];
 
     // Tell the game about this list of assets - the "required" category is
     // for assets that need to be fully loaded before the game can start
@@ -166,11 +166,11 @@ MyGame = function()
     this.gameState=1;   // 0- paused 1-active 2- over
     this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
+    TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
 
 TGE.Game.prototype.OrientationChanged= function (a){
-    console.log("before switch" + a);
-
+   
     switch(window.orientation){
         case -90:
         case 90: document.getElementById("game_canvas").style.display="none";
@@ -183,8 +183,7 @@ TGE.Game.prototype.OrientationChanged= function (a){
                          document.getElementById("game_canvas").style.display="block";
                         break;
         default :
-                    console.log("in default" + a); 
-                     
+                                         
                       break;
         }
     }
@@ -192,10 +191,10 @@ TGE.Game.prototype.OrientationChanged= function (a){
 // New methods and overrides for your game class will go in here
 MyGame.prototype =
 {
-    // TGE.Game method override - called when the gameplay starts
+	// TGE.Game method override - called when the gameplay starts
     subclassStartPlaying: function()
     {
-        // Clear everything in the scene+ 40
+    	// Clear everything in the scene+ 40
         this.rowsndColumns =13;
         this.tilesWidthHeight = 42;
         this.buttonsWidthHeight = 20;
@@ -220,7 +219,7 @@ MyGame.prototype =
         this.scoreText = this.CreateUIEntity(TGE.Text).Setup(this.xPadding + 200,this.yPadding + 20, "0", "bold italic 20px Arial", "center", "middle", "#FFF");        
         
         var gameMatrix =  (this.gameLevel<gameLevels.length)? gameLevels[this.gameLevel]:$M[[]];
-        // console.log(gameMatrix);
+
         if(gameMatrix.isSquare() && !gameMatrix.isSingular()){
             this.rowsAndColumns = gameMatrix.rows();
             this.mBoardObj = new Board(this, gameMatrix);
@@ -319,8 +318,11 @@ MyGame.prototype =
                 }
                 else
                 {
-                    viewport.setAttribute('content', 'width=device-width, maximum-scale=0.85, minimum-scale=0.85,initial-scale=0.85, user-scalable=no');
-                    
+                    if(this.mCanvasDiv.clientWidth==960||this.mCanvasDiv.clientWidth==640){
+                        viewport.setAttribute("content","width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no")
+                    }else{
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=0.5, minimum-scale=0.5,initial-scale=0.5, user-scalable=no');
+                    }
                 }
             }
             break;
@@ -329,7 +331,7 @@ MyGame.prototype =
 
                 // Android browser popup block is hyper sensitive to _blank window open calls
                 this.mDefaultLinkTarget = "_self";
-                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=1.0, minimum-scale=1.0,initial-scale=1.0');
+                viewport.setAttribute('content', 'width=device-width, height=device-height, maximum-scale=0.50, minimum-scale=0.50,initial-scale=0.50');
 
                 break;
 
@@ -341,8 +343,7 @@ MyGame.prototype =
                 }
                 else
                 {
-                        document.getElementById('game_canvas').style.marginTop = '50px';
-                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.3, minimum-scale=1.3,initial-scale=1.3,user-scalable=no');
+                        viewport.setAttribute('content', 'width=device-width, maximum-scale=1.07, minimum-scale=1.07,initial-scale=1.07,user-scalable=no');
                 }
                 
                 break;
@@ -478,7 +479,6 @@ Drawtool.prototype =
         }
     },
     finishErasing: function() {
-        // console.log(this.paths);
         this.state = 0;
         this.deselectTool();
     },
@@ -523,17 +523,6 @@ Pen.prototype = {
             if(lastpoint.x!=point.x || lastpoint.y!=point.y){
                 var lastE = this.board[lastpoint.x][lastpoint.y];
                 var currentE = this.board[point.x][point.y];
-                if(Math.abs(lastpoint.x - point.x)> 1){
-                    for(var i= 1; i<Math.abs(lastpoint.x - point.x); i++){
-                        var factor = ((lastpoint.x - point.x)>0)?i: i*(-1);
-                        this.draw({x: (lastpoint.x+factor), y: lastpoint.y});
-                    }
-                } else if(Math.abs(lastpoint.y - point.y)>1){
-                    for(var i= 1; i<Math.abs(lastpoint.y - point.y); i++){
-                        var factor = ((lastpoint.y - point.y)>0)?i: i*(-1);
-                        this.draw({x: lastpoint.x, y: (lastpoint.y+factor)});
-                    }
-                }
 
                 if(lastE != null && currentE != null && !currentE.state.match(/^path$/g)){
                     if(((lastpoint.x - point.x)==0 || (lastpoint.y - point.y)==0)){
@@ -583,19 +572,42 @@ Pen.prototype = {
                             }
                         }
 
+                        var factor = 0;
+                        var intrimpoint = null;
+                        var intrimE = null
+                        if(Math.abs(lastpoint.x - point.x)> 1){
+                            for(var i= 1; i<Math.abs(lastpoint.x - point.x); i++){
+                                factor = ((lastpoint.x - point.x)>0)? i*(-1) : i;
+                                intrimpoint = {x: (lastpoint.x+factor), y: lastpoint.y};
+                                this.drawhistory.push(intrimpoint);
+                                intrimE = this.board[intrimpoint.x][intrimpoint.y];
+                                intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
+                                intrimE.state = "path";
+                            }
+                        } else if(Math.abs(lastpoint.y - point.y)>1){
+                            for(var i= 1; i<Math.abs(lastpoint.y - point.y); i++){
+                                factor = ((lastpoint.y - point.y)>0)? i*(-1):i;
+                                intrimpoint = {x: lastpoint.x, y: (lastpoint.y+factor)};
+                                this.drawhistory.push(intrimpoint);
+                                intrimE = this.board[intrimpoint.x][intrimpoint.y];
+                                intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
+                                intrimE.state = "path";
+                            }
+                        } 
+
                         if(currentE.state.match(/^blank$/g)){
+                            this.drawhistory.push(point);
                             currentE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, point, null));
                             currentE.state = "path";
-                            this.drawhistory.push(point);
                         } else if(currentE.state.match(new RegExp("^"+this.drawhistory.origin+"$", "g"))){
+                            this.drawhistory.push(point);
                             var direction  = getDirection( point, lastpoint, null);
                             direction = direction.replace(/^[^-]*-/g,"");
                             currentE.SetImage(currentE.state+"-"+direction);
                             currentE.state = currentE.state+"-"+direction;
                             this.isCompleted = true;
-                            this.drawhistory.push(point);
                             this.master.finishDrawing( this.drawhistory, this.isCompleted);
-                        } else if(lastE.state.match(/^[^-]*$/g)){
+                        } else if(!currentE.state.match(/^blank$/g) && !currentE.state.match(/^path$/g)){
                             this.master.finishDrawing( this.drawhistory, this.isCompleted);
                         }
                     }
