@@ -164,7 +164,7 @@ MyGame = function()
 
     //Game state handler
     this.gameState=1;   // 0- paused 1-active 2- over
-    this.gameLevel=1;   // 0 to this.mLevels.lenght-1
+    this.gameLevel=0;   // 0 to this.mLevels.lenght-1
     this.gameMode=1;    // game mode 1 - quest, 2 -duet
     TGE.Game.prototype.ResizeViewportForDevice.call(this);
 }
