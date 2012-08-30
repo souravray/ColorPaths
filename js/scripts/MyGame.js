@@ -577,21 +577,33 @@ Pen.prototype = {
                         var intrimE = null
                         if(Math.abs(lastpoint.x - point.x)> 1){
                             for(var i= 1; i<Math.abs(lastpoint.x - point.x); i++){
-                                factor = ((lastpoint.x - point.x)>0)? i*(-1) : i;
+                                factor = ((lastpoint.x - point.x)>0)? i*(-1) : 
                                 intrimpoint = {x: (lastpoint.x+factor), y: lastpoint.y};
-                                this.drawhistory.push(intrimpoint);
                                 intrimE = this.board[intrimpoint.x][intrimpoint.y];
-                                intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
-                                intrimE.state = "path";
+                                if(intrimE.state.match(/^blank$/g)){
+                                    this.drawhistory.push(intrimpoint);
+                                    intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
+                                    intrimE.state = "path";
+                                }else{
+                                    point = intrimpoint;
+                                    currentE = intrimE;
+                                    break;
+                                }
                             }
                         } else if(Math.abs(lastpoint.y - point.y)>1){
                             for(var i= 1; i<Math.abs(lastpoint.y - point.y); i++){
                                 factor = ((lastpoint.y - point.y)>0)? i*(-1):i;
                                 intrimpoint = {x: lastpoint.x, y: (lastpoint.y+factor)};
-                                this.drawhistory.push(intrimpoint);
                                 intrimE = this.board[intrimpoint.x][intrimpoint.y];
-                                intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
-                                intrimE.state = "path";
+                                if(intrimE.state.match(/^blank$/g)){
+                                    this.drawhistory.push(intrimpoint);
+                                    intrimE.SetImage(this.drawhistory.origin+ "-path-" + getDirection(lastpoint, intrimpoint, point));
+                                    intrimE.state = "path";
+                                }else{
+                                    point = intrimpoint;
+                                    currentE = intrimE;
+                                    break;
+                                }
                             }
                         } 
 
