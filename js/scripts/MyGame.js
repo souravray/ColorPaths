@@ -668,6 +668,14 @@ Eraser.prototype =
 // game levels
 
 var gameLevels = new Array(
+    //5*5 level 22
+    $M([
+      ["blank","red","blank","blank","blank"],
+      ["blank","green","blank","pink","blank"],
+      ["red","yellow","pink","blank","blank"],
+      ["blank","blank","green","blank","blank"],
+      ["yellow","blue","blank","blank","blue"]      
+    ]),
     //5*5 level 1
     $M([
       ["red","blank","blank","pink","yellow"],
@@ -675,6 +683,16 @@ var gameLevels = new Array(
       ["red","blank","blank","yellow","aqua"],
       ["pink","blank","blank","green","blank"],
       ["aqua","blank","blank","blank","blank"]      
+    ]),
+
+    //6*6 level 19
+    $M([
+      ["blank","blank","blank","blank","blank", "pink"],
+      ["blank","yellow","blank","blank","aqua", "yellow"],
+      ["blank","blank","blank","blank","green", "blank"],
+      ["orange","blank","blank","blank","blank", "blank"],
+      ["blank","pink","blank","aqua","green", "blank"],
+      ["blank","orange","blank","blank","blank", "blank"]     
     ]),
 
     //7*7 level 1
